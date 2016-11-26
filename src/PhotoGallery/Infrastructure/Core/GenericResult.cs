@@ -9,5 +9,7 @@ namespace PhotoGallery.Infrastructure.Core
     {
         public bool Succeeded { get; set; }
         public string Message { get; set; }
+        public string WechatName { get; set;}
+        public string WechatImageURL { get; set;}        
     }
 }

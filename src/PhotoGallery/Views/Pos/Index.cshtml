@@ -1,5 +1,5 @@
-﻿@{
-    ViewBag.Title = "PhotoGallery";
+@{
+    ViewBag.Title = "NetSDL Pos";
 }
 
 @section styles
@@ -62,7 +62,7 @@
         }
         qrcode.makeCode(qrValue);
     }
-    makeCode('{type:pos,id:1}');
+    makeCode("{\"type\": \"pos\",\"id\": @ViewBag.id}");
 
     setTimeout(checkUser, 500);
     function checkUser()
@@ -74,7 +74,7 @@
             },
             method: 'POST',
             dataType: 'json',
-            data: "{Username:'POS', Password:'111'}",
+            data: "{Username:'POS-@ViewBag.id', Password:'111'}",
             success: function(data){
                 console.log('succes: '+data.Succeeded);
                 if(data.Succeeded){

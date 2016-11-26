@@ -43,6 +43,8 @@ namespace PhotoGallery.Infrastructure
             modelBuilder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(200);
             modelBuilder.Entity<User>().Property(u => u.HashedPassword).IsRequired().HasMaxLength(200);
             modelBuilder.Entity<User>().Property(u => u.Salt).IsRequired().HasMaxLength(200);
+            modelBuilder.Entity<User>().Property(u => u.WechatName).HasMaxLength(2000);
+            modelBuilder.Entity<User>().Property(u => u.WechatImageURL).HasMaxLength(2000);
 
             // UserRole
             modelBuilder.Entity<UserRole>().Property(ur => ur.UserId).IsRequired();

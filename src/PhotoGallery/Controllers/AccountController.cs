@@ -60,7 +60,9 @@ namespace PhotoGallery.Controllers
                     _authenticationResult = new GenericResult()
                     {
                         Succeeded = true,
-                        Message = "Authentication succeeded"
+                        Message =  Convert.ToString(_userContext.User.Id),
+                        WechatName = _userContext.User.WechatName,
+                        WechatImageURL = _userContext.User.WechatImageURL
                     };
                 }
                 else
@@ -104,6 +106,36 @@ namespace PhotoGallery.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [HttpGet("pos/{id:int}")]
+        public string Get(int id)
+        {
+            try{
+                PosViewModel pos = new PosViewModel();
+                pos.Id = id;
+                string callbackFunctionName = Request.Query["callback"];
+                string posID = Request.Query["posID"];
+                string name = Request.Query["name"];
+                string imageURL = Request.Query["imageURL"];
+                string jsCode = callbackFunctionName + "({\"Status\":\"OK\"});";
+                User _user = _membershipService.CreateUser("POS-" + posID, "POS-" + posID + "@netsdl.com", "111", new int[] { 1 }, name, imageURL);
+                return jsCode;
+            }
+            catch (Exception ex)
+            {
+                var Message = ex.Message;
+                return Message;
+            }            
+        }
+
+        [HttpGet("delete/{id:int}")]
+        public string Delete(int id)
+        {
+            User _userToRemove = this._userRepository.GetSingle(id);
+            this._userRepository.Delete(_userToRemove);
+            this._userRepository.Commit();
+            return "OK";
         }
 
         [Route("register")]

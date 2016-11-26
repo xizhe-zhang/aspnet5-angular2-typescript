@@ -18,6 +18,8 @@ namespace PhotoGallery.Entities
         public string Salt { get; set; }
         public bool IsLocked { get; set; }
         public DateTime DateCreated { get; set; }
+        public string WechatName { get; set;}
+        public string WechatImageURL { get; set;}
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }

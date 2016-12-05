@@ -14,6 +14,10 @@ namespace PhotoGallery.Infrastructure.Repositories
 
     public interface IRoleRepository : IEntityBaseRepository<Role> { }
 
+    public interface IProductRepository : IEntityBaseRepository<Product> { }
+
+    public interface IWechatRepository : IEntityBaseRepository<Wechat> { }
+
     public interface IUserRepository : IEntityBaseRepository<User>
     {
         User GetSingleByUsername(string username);

@@ -11,6 +11,7 @@ using PhotoGallery.Infrastructure.Core;
 using PhotoGallery.Infrastructure;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -54,15 +55,13 @@ namespace PhotoGallery.Controllers
                     }
                     await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(new ClaimsIdentity(_claims, CookieAuthenticationDefaults.AuthenticationScheme)),
-                        new Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties {IsPersistent = user.RememberMe });
+                        new Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties { IsPersistent = user.RememberMe });
 
 
                     _authenticationResult = new GenericResult()
                     {
                         Succeeded = true,
-                        Message =  Convert.ToString(_userContext.User.Id),
-                        WechatName = _userContext.User.WechatName,
-                        WechatImageURL = _userContext.User.WechatImageURL
+                        Message = Convert.ToString(_userContext.User.Id)
                     };
                 }
                 else
@@ -111,7 +110,8 @@ namespace PhotoGallery.Controllers
         [HttpGet("pos/{id:int}")]
         public string Get(int id)
         {
-            try{
+            try
+            {
                 PosViewModel pos = new PosViewModel();
                 pos.Id = id;
                 string callbackFunctionName = Request.Query["callback"];
@@ -119,14 +119,14 @@ namespace PhotoGallery.Controllers
                 string name = Request.Query["name"];
                 string imageURL = Request.Query["imageURL"];
                 string jsCode = callbackFunctionName + "({\"Status\":\"OK\"});";
-                User _user = _membershipService.CreateUser("POS-" + posID, "POS-" + posID + "@netsdl.com", "111", new int[] { 1 }, name, imageURL);
+                User _user = _membershipService.CreateUser("POS-" + posID, "POS-" + posID + "@netsdl.com", "111", new int[] { 1 });
                 return jsCode;
             }
             catch (Exception ex)
             {
                 var Message = ex.Message;
                 return Message;
-            }            
+            }
         }
 
         [HttpGet("delete/{id:int}")]

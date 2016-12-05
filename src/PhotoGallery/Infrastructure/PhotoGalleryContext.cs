@@ -17,6 +17,13 @@ namespace PhotoGallery.Infrastructure
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Error> Errors { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<Wechat> Wechats { get; set; }
 
         public PhotoGalleryContext(DbContextOptions options) : base(options)
         {
@@ -43,8 +50,6 @@ namespace PhotoGallery.Infrastructure
             modelBuilder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(200);
             modelBuilder.Entity<User>().Property(u => u.HashedPassword).IsRequired().HasMaxLength(200);
             modelBuilder.Entity<User>().Property(u => u.Salt).IsRequired().HasMaxLength(200);
-            modelBuilder.Entity<User>().Property(u => u.WechatName).HasMaxLength(2000);
-            modelBuilder.Entity<User>().Property(u => u.WechatImageURL).HasMaxLength(2000);
 
             // UserRole
             modelBuilder.Entity<UserRole>().Property(ur => ur.UserId).IsRequired();
@@ -52,6 +57,13 @@ namespace PhotoGallery.Infrastructure
 
             // Role
             modelBuilder.Entity<Role>().Property(r => r.Name).IsRequired().HasMaxLength(50);
+
+            // Store
+            modelBuilder.Entity<Store>().HasMany(a => a.Products).WithOne(p => p.Store);
+
+            // Wechat
+            modelBuilder.Entity<Wechat>().HasMany(a => a.Users).WithOne(p => p.Wechat);
+
         }
     }
 }

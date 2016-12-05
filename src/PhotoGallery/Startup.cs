@@ -74,6 +74,8 @@ namespace PhotoGallery
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<ILoggingRepository, LoggingRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IWechatRepository, WechatRepository>();
 
             // Services
             services.AddScoped<IMembershipService, MembershipService>();

@@ -45,7 +45,7 @@ namespace PhotoGallery.Infrastructure.Services
 
             return membershipCtx;
         }
-        public User CreateUser(string username, string email, string password, int[] roles, string wechatName = "", string wechatImageURL = "")
+        public User CreateUser(string username, string email, string password, int[] roles)
         {
             var existingUser = _userRepository.GetSingleByUsername(username);
 
@@ -63,9 +63,7 @@ namespace PhotoGallery.Infrastructure.Services
                 Email = email,
                 IsLocked = false,
                 HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt),
-                DateCreated = DateTime.Now,
-                WechatName = wechatName,
-                WechatImageURL = wechatImageURL
+                DateCreated = DateTime.Now
             };
 
             _userRepository.Add(user);

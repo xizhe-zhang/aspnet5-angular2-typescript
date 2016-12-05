@@ -9,18 +9,22 @@ namespace PhotoGallery.Entities
     {
         public User()
         {
-            UserRoles = new List<UserRole>();
+            this.Sessions = new HashSet<Session>();
+            this.UserRoles = new HashSet<UserRole>();
         }
+    
         public int Id { get; set; }
-        public string Username { get; set; }
+        public System.DateTime DateCreated { get; set; }
         public string Email { get; set; }
         public string HashedPassword { get; set; }
-        public string Salt { get; set; }
         public bool IsLocked { get; set; }
-        public DateTime DateCreated { get; set; }
-        public string WechatName { get; set;}
-        public string WechatImageURL { get; set;}
-
+        public string Salt { get; set; }
+        public string Username { get; set; }
+        public Nullable<int> StoreId { get; set; }
+        public Nullable<int> WechatId { get; set; }
+        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual Store Store { get; set; }
+        public virtual Wechat Wechat { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

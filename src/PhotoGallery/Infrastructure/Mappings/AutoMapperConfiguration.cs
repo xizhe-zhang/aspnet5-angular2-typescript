@@ -13,7 +13,6 @@ namespace PhotoGallery.Infrastructure.Mappings
             Mapper.Initialize(x =>
             {
                 x.AddProfile<DomainToViewModelMappingProfile>();
-                //x.AddProfile<ViewModelToDomainMappingProfile>();
             });
         }
     }

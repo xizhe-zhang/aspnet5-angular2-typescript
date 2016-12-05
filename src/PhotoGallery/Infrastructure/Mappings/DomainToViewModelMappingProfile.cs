@@ -21,6 +21,12 @@ namespace PhotoGallery.Infrastructure.Mappings
                     map.MapFrom(a => (a.Photos != null && a.Photos.Count > 0) ?
                     "/images/" + a.Photos.First().Uri :
                     "/images/thumbnail-default.png"));
+
+            Mapper.CreateMap<Product, ProductViewModel>();
+
+            Mapper.CreateMap<Wechat, WechatViewModel>();
+
+            Mapper.CreateMap<User, UserViewModel>();
         }
     }
 }

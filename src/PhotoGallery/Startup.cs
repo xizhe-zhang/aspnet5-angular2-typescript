@@ -105,6 +105,8 @@ namespace PhotoGallery
                     res.NamingStrategy = null;
                 }
             });
+
+            services.AddSignalR(options => options.Hubs.EnableDetailedErrors = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -134,6 +136,8 @@ namespace PhotoGallery
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 //routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
+
+            app.UseSignalR();
 
             DbInitializer.Initialize(app.ApplicationServices, _applicationPath);
         }

@@ -113,7 +113,13 @@ namespace PhotoGallery
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // this will serve up wwwroot
-            app.UseStaticFiles();
+            app.UseCors(
+                builder => builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials())
+                .UseStaticFiles()
+                .UseWebSockets();
 
             AutoMapperConfiguration.Configure();
 

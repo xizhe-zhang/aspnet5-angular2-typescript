@@ -39,14 +39,25 @@
 
 @section scripts
 {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>    
     <script src="~/lib/js/jquery.fancybox.pack.js"></script>
     <script src="~/lib/js/alertify.min.js"></script>
     <script src="~/lib/js/qrcode.min.js"></script>
+    <script src="~/lib/signalr/jquery.signalR.js"></script>
+
+    <script src="~/lib/core-js/client/shim.js"></script>
+    <script src="~/lib/zone.js/dist/zone.js"></script>
+    <script src="~/lib/reflect-metadata/Reflect.js"></script>
+    <script src="~/lib/systemjs/dist/system.src.js"></script>
+
+    <script src="/signalr/js"></script>
 }
 
 @section customScript
 {
     System.import('app').catch(console.log.bind(console));
+    
     $(document).ready(function() {
         $('.fancybox').fancybox();
     });
@@ -62,9 +73,27 @@
         }
         qrcode.makeCode(qrValue);
     }
+
     makeCode('{type:pos,id:1}');
 
-    setTimeout(checkUser, 500);
+    $.connection.hub.start().done(function (response) {
+       console.log("connection ok:" + response.id);
+       $.connection.broadcaster.server.subscribe(1);
+    });
+
+    $.connection.broadcaster.client.addFeed = function (feed){
+        console.log("server call back:" + feed);
+
+        $("#qrcode").hide();
+        $("#qrword").hide();
+        $("#wechatimageurl").html("<img style='height: 400px;' src='"+ feed.WechatImageUrl +"'></img>");
+        $("#wechatname").html("<p>" + feed.WechatName + "</p>");
+        $("#wechat").show();
+        console.log("login ok!" );
+
+    }
+
+    /*setTimeout(checkUser, 500);
     function checkUser()
     {
         $.ajax({
@@ -107,6 +136,6 @@
                 console.log('succes: '+ data);
             }
         });
-    }
+    }*/
 
 }

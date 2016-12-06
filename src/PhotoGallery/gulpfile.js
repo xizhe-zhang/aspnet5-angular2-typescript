@@ -91,6 +91,11 @@ gulp.task('setup-vendors', function (done) {
     gulp.src('node_modules/' + "rxjs/**/*.js",
             { base: 'node_modules/' })
             .pipe(gulp.dest(lib));
+
+    gulp.src('qrcodejs-master/' + "qrcode.min.js",
+            { base: 'qrcodejs-master/' })
+            .pipe(gulp.dest(paths.jsVendors));
+            
 });
 
 gulp.task('compile-typescript', function (done) {

@@ -217,3 +217,5 @@ ModelManifest.xml
 /src/PhotoGallery/wwwroot/app/**/*.js.map
 /src/PhotoGallery/typings
 /src/PhotoGallery/migrations
+/src/PhotoGallery/.vscode/launch.json
+/src/PhotoGallery/.vscode/tasks.json

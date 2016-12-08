@@ -25,84 +25,96 @@ var tsProject = ts.createProject('./wwwroot/tsconfig.json');
 
 gulp.task('setup-vendors', function (done) {
     gulp.src([
-      'node_modules/jquery/dist/jquery.*js',
-      'bower_components/bootstrap/dist/js/bootstrap*.js',
-      'node_modules/fancybox/dist/js/jquery.fancybox.pack.js',
-      'bower_components/alertify.js/lib/alertify.min.js',
-      'systemjs.config.js'
+        'node_modules/jquery/dist/jquery.*js',
+        'bower_components/bootstrap/dist/js/bootstrap*.js',
+        'node_modules/fancybox/dist/js/jquery.fancybox.pack.js',
+        'bower_components/alertify.js/lib/alertify.min.js',
+        'systemjs.config.js'
     ]).pipe(gulp.dest(paths.jsVendors));
 
     gulp.src([
-      'bower_components/bootstrap/dist/css/bootstrap.css',
-      'node_modules/fancybox/dist/css/jquery.fancybox.css',
-      'bower_components/components-font-awesome/css/font-awesome.css',
-      'bower_components/alertify.js/themes/alertify.core.css',
-      'bower_components/alertify.js/themes/alertify.bootstrap.css',
-      'bower_components/alertify.js/themes/alertify.default.css'
+        'bower_components/bootstrap/dist/css/bootstrap.css',
+        'node_modules/fancybox/dist/css/jquery.fancybox.css',
+        'bower_components/components-font-awesome/css/font-awesome.css',
+        'bower_components/alertify.js/themes/alertify.core.css',
+        'bower_components/alertify.js/themes/alertify.bootstrap.css',
+        'bower_components/alertify.js/themes/alertify.default.css'
     ]).pipe(gulp.dest(paths.cssVendors));
 
     gulp.src([
-      'node_modules/fancybox/dist/img/blank.gif',
-      'node_modules/fancybox/dist/img/fancybox_loading.gif',
-      'node_modules/fancybox/dist/img/fancybox_loading@2x.gif',
-      'node_modules/fancybox/dist/img/fancybox_overlay.png',
-      'node_modules/fancybox/dist/img/fancybox_sprite.png',
-      'node_modules/fancybox/dist/img/fancybox_sprite@2x.png'
+        'node_modules/fancybox/dist/img/blank.gif',
+        'node_modules/fancybox/dist/img/fancybox_loading.gif',
+        'node_modules/fancybox/dist/img/fancybox_loading@2x.gif',
+        'node_modules/fancybox/dist/img/fancybox_overlay.png',
+        'node_modules/fancybox/dist/img/fancybox_sprite.png',
+        'node_modules/fancybox/dist/img/fancybox_sprite@2x.png'
     ]).pipe(gulp.dest(paths.imgVendors));
 
     gulp.src([
-      'node_modules/bootstrap/fonts/glyphicons-halflings-regular.eot',
-      'node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg',
-      'node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf',
-      'node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff',
-      'node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2',
-      'bower_components/components-font-awesome/fonts/FontAwesome.otf',
-      'bower_components/components-font-awesome/fonts/fontawesome-webfont.eot',
-      'bower_components/components-font-awesome/fonts/fontawesome-webfont.svg',
-      'bower_components/components-font-awesome/fonts/fontawesome-webfont.ttf',
-      'bower_components/components-font-awesome/fonts/fontawesome-webfont.woff',
-      'bower_components/components-font-awesome/fonts/fontawesome-webfont.woff2',
+        'node_modules/bootstrap/fonts/glyphicons-halflings-regular.eot',
+        'node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg',
+        'node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf',
+        'node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff',
+        'node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2',
+        'bower_components/components-font-awesome/fonts/FontAwesome.otf',
+        'bower_components/components-font-awesome/fonts/fontawesome-webfont.eot',
+        'bower_components/components-font-awesome/fonts/fontawesome-webfont.svg',
+        'bower_components/components-font-awesome/fonts/fontawesome-webfont.ttf',
+        'bower_components/components-font-awesome/fonts/fontawesome-webfont.woff',
+        'bower_components/components-font-awesome/fonts/fontawesome-webfont.woff2',
     ]).pipe(gulp.dest(paths.fontsVendors));
 
     gulp.src('node_modules/' + "@angular/**/*.js",
-                { base: 'node_modules/' + "@angular/" })
-                .pipe(gulp.dest(lib + "@angular/"));
+        { base: 'node_modules/' + "@angular/" })
+        .pipe(gulp.dest(lib + "@angular/"));
 
     gulp.src('node_modules/' + "angular2-in-memory-web-api/*.js",
-            { base: 'node_modules/' })
-            .pipe(gulp.dest(lib));
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
     gulp.src('node_modules/' + "core-js/client/shim*.js",
-            { base: 'node_modules/' })
-            .pipe(gulp.dest(lib));
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
-     gulp.src('node_modules/' + "zone.js/dist/zone*.js",
-            { base: 'node_modules/' })
-            .pipe(gulp.dest(lib));
+    gulp.src('node_modules/' + "zone.js/dist/zone*.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
     gulp.src('node_modules/' + "reflect-metadata/Reflect*.js",
-            { base: 'node_modules/' })
-            .pipe(gulp.dest(lib));
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
     gulp.src('node_modules/' + "systemjs/dist/*.js",
-            { base: 'node_modules/' })
-            .pipe(gulp.dest(lib));
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
     gulp.src('node_modules/' + "rxjs/**/*.js",
-            { base: 'node_modules/' })
-            .pipe(gulp.dest(lib));
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
     gulp.src('qrcodejs-master/' + "qrcode.min.js",
-            { base: 'qrcodejs-master/' })
-            .pipe(gulp.dest(paths.jsVendors));
-            
+        { base: 'qrcodejs-master/' })
+        .pipe(gulp.dest(paths.jsVendors));
+
+    gulp.src('bower_components/bootstrap/*')
+        .pipe(gulp.dest(lib + 'bootstrap'));
+
+    gulp.src('bower_components/jquery/*')
+        .pipe(gulp.dest(lib + 'bootstrap'));
+
+    gulp.src('bower_components/jquery-validation/*')
+        .pipe(gulp.dest(lib + 'jquery-validation'));
+
+    gulp.src('bower_components/signalr/*')
+        .pipe(gulp.dest(lib + 'signalr'));
+
 });
 
 gulp.task('compile-typescript', function (done) {
     var tsResult = gulp.src([
-       "wwwroot/app/**/*.ts"
+        "wwwroot/app/**/*.ts"
     ])
-     .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
+        .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
     return tsResult.js.pipe(gulp.dest(paths.tsOutput));
 });
 

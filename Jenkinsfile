@@ -8,9 +8,7 @@ node {
    }
    stage('Copy Files') {
         dir('src/PhotoGallery') {
-           sh 'cp -r /home/project-pos/node_modules/* node_modules'
-		   sh 'cp -r /home/project-pos/bower_components/* bower_components'
-		   sh 'cp -r /home/project-pos/typings/* typings'
+           sh 'cp -r /home/project-pos/* .'
         }
    }   
    stage('Build Gulp') {

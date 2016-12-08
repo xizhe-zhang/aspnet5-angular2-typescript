@@ -96,19 +96,19 @@ gulp.task('setup-vendors', function (done) {
         { base: 'qrcodejs-master/' })
         .pipe(gulp.dest(paths.jsVendors));
 
-    gulp.src('bower_components/bootstrap/*')
+    gulp.src('bower_components/bootstrap/**/*')
         .pipe(gulp.dest(lib + 'bootstrap'));
 
-    gulp.src('bower_components/jquery/*')
+    gulp.src('bower_components/jquery/**/*')
         .pipe(gulp.dest(lib + 'jquery'));
 
-    gulp.src('bower_components/jquery-validation/*')
+    gulp.src('bower_components/jquery-validation/**/*')
         .pipe(gulp.dest(lib + 'jquery-validation'));
 
-    gulp.src('bower_components/jquery-validation-unobtrusive/*')
+    gulp.src('bower_components/jquery-validation-unobtrusive/**/*')
         .pipe(gulp.dest(lib + 'jquery-validation-unobtrusive'));        
 
-    gulp.src('bower_components/signalr/*')
+    gulp.src('bower_components/signalr/**/*')
         .pipe(gulp.dest(lib + 'signalr'));
 
 });

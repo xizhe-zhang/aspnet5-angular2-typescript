@@ -100,7 +100,7 @@ gulp.task('setup-vendors', function (done) {
         .pipe(gulp.dest(lib + 'bootstrap'));
 
     gulp.src('bower_components/jquery/*')
-        .pipe(gulp.dest(lib + 'bootstrap'));
+        .pipe(gulp.dest(lib + 'jquery'));
 
     gulp.src('bower_components/jquery-validation/*')
         .pipe(gulp.dest(lib + 'jquery-validation'));

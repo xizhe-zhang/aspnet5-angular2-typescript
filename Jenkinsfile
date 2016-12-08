@@ -1,14 +1,12 @@
 node {
    stage('Clear Working Directory') { // for display purposes
-	   dir('src/PhotoGallery'){
-			sh 'rm -r -f node_modules'
-			sh 'rm -r -f bower_components'
-			sh 'rm -r -f typings'
-			sh 'rm -r -f obj'
-			sh 'rm -r -f bin'
-	   }
+		deleteDir()
    }
-   stage('Copy Files') {
+   stage('Copy Source Code') { // for display purposes
+		sh 'mkdir src'
+		sh 'cp -r ../pos-demo-master@script/src .'
+   }   
+   stage('Copy Build Files') {
         dir('src/PhotoGallery') {
 			sh 'mkdir bower_components'
 			sh 'mkdir node_modules'

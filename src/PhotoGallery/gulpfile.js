@@ -105,6 +105,9 @@ gulp.task('setup-vendors', function (done) {
     gulp.src('bower_components/jquery-validation/*')
         .pipe(gulp.dest(lib + 'jquery-validation'));
 
+    gulp.src('bower_components/jquery-validation-unobtrusive/*')
+        .pipe(gulp.dest(lib + 'jquery-validation-unobtrusive'));        
+
     gulp.src('bower_components/signalr/*')
         .pipe(gulp.dest(lib + 'signalr'));
 

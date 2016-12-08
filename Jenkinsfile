@@ -1,5 +1,6 @@
 node {
    stage('Clear Working Directory') { // for display purposes
+        sh 'sudo rm -r -f src/*'
 		deleteDir()
    }
    stage('Copy Source Code') { // for display purposes
@@ -22,10 +23,8 @@ node {
         }
    }
    stage('Doploy') {
-        dir('/opt/p2/netcoreapp1.0') {
-            deleteDir()
-            sh 'supervisorctl stop PhotoGallery'
-        }
+        sh 'sudo rm -r -f /opt/p2/netcoreapp1.0/*'
+        sh 'sudo supervisorctl stop PhotoGallery'
         sh 'cp -r src/PhotoGallery/bin/Debug/netcoreapp1.0/* /opt/p2/netcoreapp1.0'
         dir('/opt/p2/netcoreapp1.0') {
             sh 'supervisorctl start PhotoGallery'

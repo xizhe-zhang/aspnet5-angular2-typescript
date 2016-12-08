@@ -8,7 +8,12 @@ node {
    }
    stage('Copy Files') {
         dir('src/PhotoGallery') {
-           sh 'cp -r /home/project-pos/* .'
+		   sh 'mkdir bower_components'
+		   sh 'mkdir node_modules'
+		   sh 'mkdir typings'
+           sh 'cp -r /home/project-pos/bower_components/* bower_components'
+		   sh 'cp -r /home/project-pos/node_modules/* node_modules'
+		   sh 'cp -r /home/project-pos/typings/* typings'
         }
    }   
    stage('Build Gulp') {

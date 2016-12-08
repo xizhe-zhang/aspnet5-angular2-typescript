@@ -1,0 +1,20 @@
+http://stackoverflow.com/questions/17096784/is-it-possible-to-allow-jenkins-to-access-the-files-that-only-root-or-some-speci
+
+6
+down vote
+accepted
+As bcolfer said, you should be able to just run your shell commands with "sudo" in front of it. You will want to be sure that the user that started the Jenkins slave is a sudoer.
+
+As root, run "visudo", this will open the /etc/sudoers file. At the bottom add a line similar to this if it is not a current sudoer:
+
+jenkins ALL=(ALL) NOPASSWD: ALL
+
+"Jenkins" being the user that started the slave.
+
+OR
+
+You could try adding the user to the group that owns that directory. IF you run "ls -l" you should be able to see the permissions and then the user, and the group that owns the directory. Once you know the group, as root run:
+
+usermod -a -G group Jenkins
+
+"Jenkins" being the user that started the slave, and "group" being the actual group name.

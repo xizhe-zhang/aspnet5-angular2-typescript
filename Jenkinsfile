@@ -25,7 +25,7 @@ node {
    stage('Doploy') {
         sh 'sudo rm -r -f /opt/p2/netcoreapp1.0/*'
         sh 'sudo supervisorctl stop PhotoGallery'
-        sh 'cp -r src/PhotoGallery/bin/Debug/netcoreapp1.0/* /opt/p2/netcoreapp1.0'
+        sh 'sudo cp -r src/PhotoGallery/bin/Debug/netcoreapp1.0/* /opt/p2/netcoreapp1.0'
         dir('/opt/p2/netcoreapp1.0') {
             sh 'sudo supervisorctl start PhotoGallery'
         }        

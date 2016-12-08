@@ -1,14 +1,16 @@
 node {
    stage('Clear Working Directory') { // for display purposes
-      deleteDir()
-   }
-   stage('Git Clone Project') { // for display purposes
-      // Get some code from a GitHub repository
-      git 'https://github.com/xizhe-zhang/aspnet5-angular2-typescript.git'
+      sh 'rm -r -f node_modules'
+	  sh 'rm -r -f bower_components'
+	  sh 'rm -r -f typings'
+	  sh 'rm -r -f obj'
+	  sh 'rm -r -f bin'
    }
    stage('Copy Files') {
         dir('src/PhotoGallery') {
-           sh 'cp -r /home/project-pos/* .'
+           sh 'cp -r /home/project-pos/node_modules node_modules'
+		   sh 'cp -r /home/project-pos/bower_components bower_components'
+		   sh 'cp -r /home/project-pos/typings typings'
         }
    }   
    stage('Build Gulp') {

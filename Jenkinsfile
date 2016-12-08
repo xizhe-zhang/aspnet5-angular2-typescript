@@ -17,7 +17,7 @@ node {
    }
    stage('Build dotnet') {
         dir('src/PhotoGallery') {
-            sh 'dotnet restore'
+            sh 'sudo dotnet restore'
             sh 'dotnet publish'
         }
    }

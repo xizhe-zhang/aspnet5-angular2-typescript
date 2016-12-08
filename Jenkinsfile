@@ -3,17 +3,11 @@ node {
 		deleteDir()
    }
    stage('Copy Source Code') { // for display purposes
-		sh 'mkdir src'
 		sh 'cp -r ../pos-demo-master@script/src .'
    }   
    stage('Copy Build Files') {
         dir('src/PhotoGallery') {
-			sh 'mkdir bower_components'
-			sh 'mkdir node_modules'
-			sh 'mkdir typings'
-			sh 'cp -r /home/project-pos/bower_components/* bower_components'
-			sh 'cp -r /home/project-pos/node_modules/* node_modules'
-			sh 'cp -r /home/project-pos/typings/* typings'
+			sh 'cp -r /home/project-pos/* .'
         }
    }   
    stage('Build Gulp') {

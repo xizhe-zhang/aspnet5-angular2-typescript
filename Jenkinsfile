@@ -27,7 +27,7 @@ node {
         sh 'sudo supervisorctl stop PhotoGallery'
         sh 'cp -r src/PhotoGallery/bin/Debug/netcoreapp1.0/* /opt/p2/netcoreapp1.0'
         dir('/opt/p2/netcoreapp1.0') {
-            sh 'supervisorctl start PhotoGallery'
+            sh 'sudo supervisorctl start PhotoGallery'
         }        
    }   
 }

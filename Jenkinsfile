@@ -1,19 +1,21 @@
 node {
    stage('Clear Working Directory') { // for display purposes
-      sh 'rm -r -f node_modules'
-	  sh 'rm -r -f bower_components'
-	  sh 'rm -r -f typings'
-	  sh 'rm -r -f obj'
-	  sh 'rm -r -f bin'
+	   dir('src/PhotoGallery'){
+			sh 'rm -r -f node_modules'
+			sh 'rm -r -f bower_components'
+			sh 'rm -r -f typings'
+			sh 'rm -r -f obj'
+			sh 'rm -r -f bin'
+	   }
    }
    stage('Copy Files') {
         dir('src/PhotoGallery') {
-		   sh 'mkdir bower_components'
-		   sh 'mkdir node_modules'
-		   sh 'mkdir typings'
-           sh 'cp -r /home/project-pos/bower_components/* bower_components'
-		   sh 'cp -r /home/project-pos/node_modules/* node_modules'
-		   sh 'cp -r /home/project-pos/typings/* typings'
+			sh 'mkdir bower_components'
+			sh 'mkdir node_modules'
+			sh 'mkdir typings'
+			sh 'cp -r /home/project-pos/bower_components/* bower_components'
+			sh 'cp -r /home/project-pos/node_modules/* node_modules'
+			sh 'cp -r /home/project-pos/typings/* typings'
         }
    }   
    stage('Build Gulp') {

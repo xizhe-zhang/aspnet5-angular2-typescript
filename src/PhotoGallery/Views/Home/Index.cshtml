@@ -95,7 +95,7 @@
                                 $("#login").hide();
                                 $("#photogallery").show();
                                 var name_int= setInterval(function(){
-                                    if($("#wechatimageurl_home")&&$("#wechatname_home")){
+                                    if( $("#wechatimageurl_home").length > 0 && $("#wechatname_home").length > 0 ){
                                         $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
                                         $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");    
                                         window.clearInterval(name_int);

@@ -1,4 +1,4 @@
-﻿<div [hidden]="!isLoginOK">
+﻿<div [hidden]="!isLoginOK" style=" height: 100vh;">
     <div id="header">
         <div class="container">
             <div id="logo">
@@ -21,16 +21,18 @@
     </div>
 </div>
 
-<div [hidden]="isLoginOK" id="login" style="display:flex; padding-top: 20vh; flex-direction: column; align-items: center; background-color: white; height: 100vh;">
+<div [hidden]="isLoginOK" id="login" style="background-color: white; padding-top: 20vh; height: 100vh;">
     <div id="loadingContainer" [hidden]="isCounterDown">
-        <div [hidden]="!isLoadingOK" id="qrcode" style="width:200px; height:200px; margin-top:15px;">
-        </div>
-        <div [hidden]="isLoadingOK" id="qrloading" style="margin-top: 30px; font-size: 20px;">
-            <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-            <span>Loading...</span>
-        </div>
-        <div [hidden]="!isLoadingOK" id="qrword" style="margin-top: 30px; font-size: 20px;">
-            <span>Scan qrcode to login in pos</span>
+        <div style="display:flex; flex-direction: column; align-items: center;">
+            <div [hidden]="!isLoadingOK" id="qrcode" style="width:200px; height:200px; margin-top:15px;">
+            </div>
+            <div [hidden]="isLoadingOK" id="qrloading" style="margin-top: 30px; font-size: 20px;">
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+                <span>Loading...</span>
+            </div>
+            <div [hidden]="!isLoadingOK" id="qrword" style="margin-top: 30px; font-size: 20px;">
+                <span>Scan qrcode to login in pos</span>
+            </div>
         </div>
     </div>
     <div id="counterdownContainer" [hidden]="!isCounterDown || isLoginOK">

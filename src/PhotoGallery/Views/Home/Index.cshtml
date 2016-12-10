@@ -4,7 +4,6 @@
 
 @section styles
 {
-    <link href="~/lib/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/css/jquery.fancybox.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/css/alertify.core.css" rel="stylesheet" />
@@ -14,9 +13,9 @@
 
 <div id="nav-separator"></div>
 
-<!--<photogallery-app>
+<photogallery-app style="display:none">
     <div class="loading">Loading</div>
-</photogallery-app>-->
+</photogallery-app>
 
 <div style="display:flex; justify-content: center; flex-direction: column; align-items: center;">
     <div id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
@@ -39,18 +38,9 @@
 
 @section scripts
 {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>    
     <script src="~/lib/js/jquery.fancybox.pack.js"></script>
     <script src="~/lib/js/alertify.min.js"></script>
     <script src="~/lib/js/qrcode.min.js"></script>
-    <script src="~/lib/signalr/jquery.signalR.min.js"></script>
-
-    <script src="~/lib/core-js/client/shim.min.js"></script>
-    <script src="~/lib/reflect-metadata/Reflect.js"></script>
-    <script src="~/lib/systemjs/dist/system.src.js"></script>
-    <!--for signalr -->
-    <script src='/signalr/js'></script>
 }
 
 @section customScript

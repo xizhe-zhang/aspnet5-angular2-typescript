@@ -15,7 +15,7 @@ import { FeedService } from './core/services/feed.service';
 import { SignalRConnectionStatus } from './core/interfaces';
 
 @Component({
-    selector: 'photogallery-app',
+    selector: 'pos-app',
     templateUrl: './app/app.component.html',
     providers: [FeedService]
 })

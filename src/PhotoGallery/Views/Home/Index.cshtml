@@ -19,9 +19,12 @@
 
 <div style="display:flex; justify-content: center; flex-direction: column; align-items: center;">
     <div id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
-    <div id="qrword" style="margin-top: 30px; font-size: 20px;">
-        <span>Scan qrcode to login in pos</span>
+    <div id="qrloading" style="margin-top: 30px; font-size: 20px;">
+        <span>loading....</span>
     </div>
+    <div id="qrword" style="margin-top: 30px; font-size: 20px;display:none">
+        <span>Scan qrcode to login in pos</span>
+    </div>    
     <div id="wechat" style="display:none;">
         <div>
             <img style="height: 50px;" src="POS.png"></img> Login OK!
@@ -63,11 +66,12 @@
         qrcode.makeCode(qrValue);
     }
 
-    makeCode('{type:pos,id:1}');
-
     $.connection.hub.start().done(function (response) {
+       $("#qrloading").hide();
        console.log("connection ok:" + response.id);
        $.connection.broadcaster.server.subscribe(1);
+       makeCode('{type:pos,id:1}');
+       $("#qrword").show();
     });
 
     $.connection.broadcaster.client.addFeed = function (feed){

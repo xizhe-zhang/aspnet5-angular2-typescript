@@ -1,16 +1,13 @@
-﻿import { NgModule }      from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { Headers, RequestOptions, BaseRequestOptions} from '@angular/http';
+import { Headers, RequestOptions, BaseRequestOptions } from '@angular/http';
 
 import { AccountModule } from './components/account/account.module';
-import { AppComponent }  from './app.component';
-import { AlbumPhotosComponent } from './components/album-photos.component';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home.component';
-import { PhotosComponent } from './components/photos.component';
-import { AlbumsComponent } from './components/albums.component';
 import { routing } from './routes';
 
 import { DataService } from './core/services/data.service';
@@ -36,7 +33,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         routing,
         AccountModule
     ],
-    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, AlbumsComponent],
+    declarations: [AppComponent, HomeComponent],
     providers: [DataService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],

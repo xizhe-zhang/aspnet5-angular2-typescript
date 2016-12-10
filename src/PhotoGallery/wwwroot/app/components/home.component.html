@@ -9,22 +9,22 @@
 
                         <div class="left">
 
-                            <span class="p-name">{{s.SkuName}}</span>
+                            <!--<span class="p-name">{{s.SkuName}}</span>
                             <span class="p-nb">Orig Price:{{s.SPrice | currency}}</span>
                             <span ng-show="s.OffRate == -20" class="p-nb">Input Price:{{s.PPrice| currency}}</span>
                             <span ng-show="s.OffRate != -20 && s.OffRate != 100" class="p-nb">Discount:{{s.OffRate}}%</span>
-                            <span class="p-nb"> Qty:{{s.Qty}}</span>
+                            <span class="p-nb"> Qty:{{s.Qty}}</span>-->
 
 
                         </div>
-                        <span class="p-price">{{s.GetPAmt() | currency}}</span>
+                        <!--<span class="p-price">{{s.GetPAmt() | currency}}</span>-->
                         <span class="clear"></span>
                     </li>
                 </ul>
-                <div class="multiple">Multiple:{{cart.GetMultiple()}}</div>
+                <!--<div class="multiple">Multiple:{{cart.GetMultiple()}}</div>
                 <div class="count">
                     Total：{{cart.GetTotalAmt() | currency}}
-                </div>
+                </div>-->
             </div>
 
             <div class="cal">
@@ -81,14 +81,14 @@
             </div>
 
             <div class="p-list" id="plist">
-                <div class="p-item" ng-repeat="s in sku.skus | filter:searchSku track by s.SkuId" ng-click="cart.AddSku(sku.GetById(s.SkuId),cart.GetMultiple())">
+                <!--<div class="p-item" ng-repeat="s in sku.skus | filter:searchSku track by s.SkuId" ng-click="cart.AddSku(sku.GetById(s.SkuId),cart.GetMultiple())">
                     <a onclick="return false;" title={{product.name}}>
                         <img src="images/products/{{s.SkuCode}}.png" alt="">
 
                         <span class="p-name">{{s.SkuName}}</span>
                         <span class="p-label">{{s.SkuPrice | currency}}</span>
                     </a>
-                </div>
+                </div>-->
                 <div class="clear"></div>
             </div>
             <div id="divbg" style="display: none;">

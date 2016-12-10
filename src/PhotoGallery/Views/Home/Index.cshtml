@@ -12,35 +12,12 @@
     @*<link href="~/lib/css/alertify.default.css" rel="stylesheet" />*@
 }
 
-<photogallery-app style="display:none; height: 100vh;" id="photogallery">
-    <div class="loading">Loading</div>
-</photogallery-app>
-
-<div id ="login" style="display:flex; padding-top: 20vh; flex-direction: column; align-items: center; background-color: white; height: 100vh;">
-    <div id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
-    <div id="qrloading" style="margin-top: 30px; font-size: 20px;">
+<photogallery-app style="height: 100vh;" id="photogallery">
+    <div style="display:flex; justify-content: center; align-items: center; font-size: 20px; height: 100vh; background-color: white;">
         <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
         <span>Loading...</span>
     </div>
-    <div id="counterdown" style="display:flex; justify-content: center; flex-direction: column; align-items: center; display:none;">
-        <div class="clock" style="margin:2em;"></div>
-    </div>
-    <div id="qrword" style="margin-top: 30px; font-size: 20px;display:none;">
-        <span>Scan qrcode to login in pos</span>
-    </div>    
-    <div id="wechat" style="display:none;">
-        <div>
-            <img style="height: 50px;" src="POS.png"></img> Login OK!
-        </div>
-        <div style="justify-content: center; display: flex;">
-            <div id="wechatimageurl"></div>
-        </div>
-        <br/>
-        <div style="justify-content: center; display: flex;">
-            <div id="wechatname" style="font-size: 40px; font-weight: bold;"></div>
-        </div>
-    </div>
-<div>
+</photogallery-app>
 
 @section scripts
 {
@@ -58,52 +35,5 @@
         $('.fancybox').fancybox();
     });
 
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-        width : 200,
-        height : 200
-    });
-
-    function makeCode (qrValue) {		
-        if (!qrValue) {
-            return;
-        }
-        qrcode.makeCode(qrValue);
-    }
-
-    document.addEventListener("DOMContentLoaded", function (event) {
-        $.connection.hub.start().done(function (response) {
-        $("#qrloading").hide();
-        console.log("connection ok:" + response.id);
-        $.connection.broadcaster.server.subscribe(1);
-        makeCode('{type:pos,id:1}');
-        $("#qrword").show();
-        });
-
-        $.connection.broadcaster.client.addFeed = function (feed){
-                $("#qrcode").hide();
-                $("#qrword").hide();
-                $("#wechatimageurl").html("<img style='height: 200px;' src='"+ feed.WechatImageUrl +"'></img>");
-                $("#wechatname").html("<p>" + feed.WechatName + "</p>");
-                $("#wechat").show();
-                $("#counterdown").show();
-                clock = $('.clock').FlipClock(3, {
-                        clockFace: 'Counter',
-                        autoStart: true,
-                        countdown: true,
-                        callbacks: {
-                            stop: function() {
-                                $("#login").hide();
-                                $("#photogallery").show();
-                                var name_int= setInterval(function(){
-                                    if( $("#wechatimageurl_home").length > 0 && $("#wechatname_home").length > 0 ){
-                                        $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
-                                        $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");    
-                                        window.clearInterval(name_int);
-                                    }
-                                },100);
-                            }
-                        }
-                    });
-            }
-    });
+    var serverFeed = {};
 }

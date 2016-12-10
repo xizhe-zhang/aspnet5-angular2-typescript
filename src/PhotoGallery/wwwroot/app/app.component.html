@@ -1,17 +1,58 @@
-﻿<div id="header">
-    <div class="container">
-        <div id="logo">
-            <a [routerLink]="['/home']">
-                <img src="logo.png">
-            </a>
+﻿<div [hidden]="!isLoginOK">
+    <div id="header">
+        <div class="container">
+            <div id="logo">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png">
+                </a>
+            </div>
+            <div style="display:flex; justify-content: center; align-items: center; margin-right: 5vh; height: 40px;">
+                <div style="display:flex; justify-content: center; align-items: center; margin-right: 5vh;" id="wechatimageurl_home">
+                    <img style="height: 35px;" src="{{wechatImageURL}}" />
+                </div>
+                <div style="display:flex; justify-content: center; align-items: center;" id="wechatname_home">
+                    <p style="margin: 0;">{{wechatName}}</p>
+                </div>
+            </div>
         </div>
-        <div style="display:flex; justify-content: center; align-items: center; margin-right: 5vh; height: 40px;">
-            <div style="display:flex; justify-content: center; align-items: center; margin-right: 5vh;" id="wechatimageurl_home"></div>
-            <div style="display:flex; justify-content: center; align-items: center;" id="wechatname_home"></div>
-        </div>
+    </div>
+    <div>
+        <router-outlet></router-outlet>
     </div>
 </div>
 
-<div>
-    <router-outlet></router-outlet>
+<div [hidden]="isLoginOK" id="login" style="display:flex; padding-top: 20vh; flex-direction: column; align-items: center; background-color: white; height: 100vh;">
+    <div id="loadingContainer" [hidden]="isCounterDown">
+        <div [hidden]="!isLoadingOK" id="qrcode" style="width:200px; height:200px; margin-top:15px;">
+        </div>
+        <div [hidden]="isLoadingOK" id="qrloading" style="margin-top: 30px; font-size: 20px;">
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+            <span>Loading...</span>
+        </div>
+        <div [hidden]="!isLoadingOK" id="qrword" style="margin-top: 30px; font-size: 20px;">
+            <span>Scan qrcode to login in pos</span>
+        </div>
+    </div>
+    <div id="counterdownContainer" [hidden]="!isCounterDown || isLoginOK">
+        <div id="counterdown" style="display:flex; justify-content: center; flex-direction: column; align-items: center;">
+            <div class="clock" style="margin:2em; display: flex; justify-content: center">
+            </div>
+        </div>
+        <div id="wechat">
+            <div style="display: flex; justify-content: center">
+                <img style="height: 50px;" src="POS.png" /> Login OK!
+            </div>
+            <div style="justify-content: center; display: flex;">
+                <div id="wechatimageurl">
+                    <img style='height: 200px;' src='{{wechatImageURL}}' />
+                </div>
+            </div>
+            <br/>
+            <div style="justify-content: center; display: flex;">
+                <div id="wechatname" style="font-size: 40px; font-weight: bold;">
+                    <p>{{wechatName}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -94,8 +94,13 @@
                             stop: function() {
                                 $("#login").hide();
                                 $("#photogallery").show();
-                                $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
-                                $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");                                
+                                var name_int= setInterval(function(){
+                                    if($("#wechatimageurl_home")&&$("#wechatname_home")){
+                                        $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
+                                        $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");    
+                                        window.clearInterval(name_int);
+                                    }
+                                },100);
                             }
                         }
                     });

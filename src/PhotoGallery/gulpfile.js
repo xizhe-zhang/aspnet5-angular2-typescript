@@ -117,6 +117,9 @@ gulp.task('setup-vendors', function (done) {
     gulp.src('FlipClock/compiled/*.css')
         .pipe(gulp.dest(paths.cssVendors));
 
+    gulp.src('NetSDL/*.css')
+        .pipe(gulp.dest(paths.cssVendors));        
+
 });
 
 gulp.task('compile-typescript', function (done) {

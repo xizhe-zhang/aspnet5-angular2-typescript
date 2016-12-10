@@ -1,92 +1,201 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <img class="img-responsive img-rounded" src="../../images/aspcorerc2.png" alt="" />
-        </div>
-        <div class="col-md-6">
-            <h3>Building Single Page Applications using ASP.NET Core, Angular 2 & TypeScript</h3>
-            <p>Step by step walkthrough on how to build clean, scallable Single Page Applications using the latest ASP.NET Core framework as middleware and Angular 2 with TypeScript on the front-end side.</p>
-            <a class="btn btn-primary btn-lg" href="http://wp.me/p3mRWu-11L" target="_blank"><i class="fa fa-book fa-fw"></i>&nbsp;Read post</a>
-        </div>
-    </div>
-    <hr>
+﻿<!-- first block start -->
+<div id="mainDiv" class="main">
+    <div class="container">
+        <div id="leftbox" class="left-col">
+            <div class="cart">
+                <h2>Shopping Cart</h2>
+                <ul class="items">
+                    <li ng-repeat="s in cart.cartSkus" ng-class="{'selected':cart.IsActiveCartSku(s.SkuId)}" ng-click="cart.SelectedActiveCartSku(s.SkuId)">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="well text-center">
-                The project is a <a href="http://chsakell.com" target="_blank">chsakell's Blog</a>'s genuine contribution and distributed under MIT licence 
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>ASP.NET Core</h4>
-                    <p>ASP.NET Core is a new open-source and cross-platform framework for building modern cloud-based Web applications using .NET.</p>
-                    <a class="btn btn-primary" href="http://www.microsoft.com/net" target="_blank">More Info</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-html5 fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>Angular 2</h4>
-                    <p>Angular is a development platform for creating applications using modern web standards. It includes essential features such as mobile gestures, animations, routing and data binding.</p>
-                    <a class="btn btn-primary" href="https://angular.io/" target="_blank">More Info</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-support fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>TypeScript</h4>
-                    <p>TypeScript lets you write JavaScript the way you really want to. TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Any browser. Any host. Any OS. Open Source.</p>
-                    <a class="btn btn-primary" href="http://www.typescriptlang.org/" target="_blank">More Info</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-database fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>Entity Framework 7</h4>
-                    <p>EF7 is a lightweight and extensible version of Entity Framework that enables new platforms and new data stores.</p>
-                    <a href="https://github.com/aspnet/EntityFramework" target="_blank" class="btn btn-primary">More info</a>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="left">
 
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; <a href="http://chsakell.com" target="_blank">chsakell's Blog</a> 2015</p>
+                            <span class="p-name">{{s.SkuName}}</span>
+                            <span class="p-nb">Orig Price:{{s.SPrice | currency}}</span>
+                            <span ng-show="s.OffRate == -20" class="p-nb">Input Price:{{s.PPrice| currency}}</span>
+                            <span ng-show="s.OffRate != -20 && s.OffRate != 100" class="p-nb">Discount:{{s.OffRate}}%</span>
+                            <span class="p-nb"> Qty:{{s.Qty}}</span>
+
+
+                        </div>
+                        <span class="p-price">{{s.GetPAmt() | currency}}</span>
+                        <span class="clear"></span>
+                    </li>
+                </ul>
+                <div class="multiple">Multiple:{{cart.GetMultiple()}}</div>
+                <div class="count">
+                    Total：{{cart.GetTotalAmt() | currency}}
+                </div>
+            </div>
+
+            <div class="cal">
+                <input type="hidden" />
+                <div class="keyboard item">
+                    <ul>
+                        <li><a href="" ng-click="cart.OperatorCmd(1)">1</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(2)">2</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(3)">3</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(4)">4</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(5)">5</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(6)">6</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(7)">7</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(8)">8</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(9)">9</a></li>
+                        <li class="pd-btn"><a href="" ng-click="cart.OperatorCmd('mp')">+/-</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd(0)">0</a></li>
+                        <li><a href="" ng-click="cart.OperatorCmd('p')">.</a></li>
+                    </ul>
+                </div>
+                <div class="cal-cate item">
+                    <ul>
+                        <li>
+                            <a href="" ng-click="cart.SetQtyOperator()" ng-style="{color: cart.IsQtyOperator() ? 'darkgrey' : '#444'}">QTY</a>
+                        </li>
+                        <li>
+                            <a href="" ng-click="cart.SetDiscountOperator()" ng-style="{color: cart.IsDiscountOperator() ? 'darkgrey' : '#444'}">DCT</a>
+                        </li>
+                        <li>
+                            <a href="" ng-click="cart.SetPriceOperator()" ng-style="{color: cart.IsPriceOperator() ? 'darkgrey' : '#444'}">Pr</a>
+                        </li>
+                        <li>
+                            <a href="" ng-click="cart.SetMultipleOperator()" ng-style="{color: cart.IsMultipleOperator() ? 'darkgrey' : '#444'}">MUP</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cal-opt item">
+                    <ul>
+                        <li><a href="" ng-click="cart.OperatorCmd('d')">Del</a></li>
+                        <li><a href="" ng-click="cart.Clear();">Clear</a></li>
+                        <li><a href="" ng-click="SaveOrder();">CheckOut</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </footer>
 
+        <div id="rightbox" class="right-col">
+            <div class="tool-bar" id="toolbar">
+                <div class="search">
+                    <input type="text" class="text" placeholder="Search" ng-model="searchSku.SkuName" />
+                    <button class="btn">Search</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="p-list" id="plist">
+                <div class="p-item" ng-repeat="s in sku.skus | filter:searchSku track by s.SkuId" ng-click="cart.AddSku(sku.GetById(s.SkuId),cart.GetMultiple())">
+                    <a onclick="return false;" title={{product.name}}>
+                        <img src="images/products/{{s.SkuCode}}.png" alt="">
+
+                        <span class="p-name">{{s.SkuName}}</span>
+                        <span class="p-label">{{s.SkuPrice | currency}}</span>
+                    </a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="divbg" style="display: none;">
+            </div>
+            <!--<div id="diveditcontent">
+                <div id="divheader" title="Move>">
+                    <div class="showpage-title">
+                        Scan
+                    </div>
+                </div>
+                <div id="divcontent">
+                    <div class="showpage-content"><input type="text" id="barcode" ng-keypress="AddSkuByScan($event)" /></div>
+                </div>
+            </div>-->
+        </div>
+
+        <!--<div class="button-col" id="Selectbox">
+            <div class="button-title"></div>
+            <div class="button-group">
+                <div class="button-sku">
+                    <a id="button-sku" class="button" onclick="Hide();">Choose Items</a>
+                </div>
+                <div class="button-barcode">
+                    <a id="button-barcode" class="button" onclick="Show();">Scan Barcode</a>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
 </div>
+
+<script type="text/javascript">
+        $('#leftbox').attr('style', 'height:' + (window.innerHeight - 65) + 'px')
+        $('.items').attr('style', 'height:' + (window.innerHeight - 380) + 'px')
+        $('#rightbox').attr('style', 'height:' + (window.innerHeight - 65) + 'px')
+        $('.p-list').attr('style', 'height:' + (window.innerHeight - 155) + 'px')
+        $('#Selectbox').attr('style', 'height:' + (window.innerHeight - 65) + 'px')
+        $('.button-group').attr('style', 'height:' + (window.innerHeight - 155) + 'px')
+        $('#diveditcontent').attr('style', 'height:' + (window.innerHeight - 67) + 'px;' + 'display:none;' + 'border-radius:10px 10px 0 0;')
+
+        window.onresize = function () {
+            $('#leftbox').attr('style', 'height:' + (window.innerHeight - 65) + 'px')
+            $('.items').attr('style', 'height:' + (window.innerHeight - 380) + 'px')
+            $('#rightbox').attr('style', 'height:' + (window.innerHeight - 65) + 'px')
+            $('.p-list').attr('style', 'height:' + (window.innerHeight - 155) + 'px')
+            $('#Selectbox').attr('style', 'height:' + (window.innerHeight - 65) + 'px')
+            $('.button-group').attr('style', 'height:' + (window.innerHeight - 155) + 'px')
+            $('#diveditcontent').attr('style', 'height:' + (window.innerHeight - 67) + 'px;' + 'display:none;' + 'border-radius:10px 10px 0 0;')
+
+        }   
+    </script>
+<script type="text/javascript">
+        var divheader = document.getElementById("divheader");
+        var divbg = document.getElementById("divbg");
+        var diveditcontent = document.getElementById("diveditcontent");
+        var selects = document.getElementsByTagName("select");
+        var divcontent = document.getElementById("divcontent");
+        var divtoolbar = document.getElementById("toolbar");
+        var divplist = document.getElementById("plist");
+        var divbuttonsku = document.getElementById("button-sku");
+        var divbuttonbarcode = document.getElementById("button-barcode");
+
+        function Show(Key) {
+
+            divtoolbar.style.display = "none";
+            divplist.style.display = "none";
+
+            //divbg.style.display = "";
+            divbg.style.width = document.body.offsetWidth;  //浏览器宽度(滚动条+clientwidth+边框）
+
+            divbg.style.height = document.body.offsetHeight;
+
+            diveditcontent.style.display = "";
+
+            divbuttonbarcode.style.background="#3072b3";
+            divbuttonbarcode.style.color = "#fff";
+            divbuttonbarcode.style.borderColor = "#3072b3";
+            divbuttonbarcode.style.textShadow = "0px 0px 0 #fff";
+
+            divbuttonsku.style.background = "#ececec";
+            divbuttonsku.style.color = "#333";
+            divbuttonsku.style.borderColor = "#d4d4d4";
+            divbuttonsku.style.textShadow = "0px 0px 0 rgba(0,0,0,0.3)";
+
+        }
+        function Hide() {
+            //隐藏窗口
+            //document.location = location.reload();
+            divbg.style.display = "none";
+            diveditcontent.style.display = "none";
+            divtoolbar.style.display = "";
+            divplist.style.display = "";
+
+            divbuttonsku.style.background = "#3072b3";
+            divbuttonsku.style.color = "#fff";
+            divbuttonsku.style.borderColor = "#3072b3";
+            divbuttonsku.style.textShadow = "";
+
+            divbuttonbarcode.style.background = "#ececec";
+            divbuttonbarcode.style.color = "#333";
+            divbuttonbarcode.style.borderColor = "#d4d4d4";
+            divbuttonbarcode.style.textShadow = "";
+
+            for (var i = 0; i < selects.length; i++) {
+                selects[i].style.display = "";
+            }
+        }
+        var th;
+        var tw;
+    </script>

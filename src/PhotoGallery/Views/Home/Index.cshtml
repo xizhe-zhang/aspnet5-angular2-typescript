@@ -70,33 +70,35 @@
         qrcode.makeCode(qrValue);
     }
 
-    $.connection.hub.start().done(function (response) {
-       $("#qrloading").hide();
-       console.log("connection ok:" + response.id);
-       $.connection.broadcaster.server.subscribe(1);
-       makeCode('{type:pos,id:1}');
-       $("#qrword").show();
-    });
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $.connection.hub.start().done(function (response) {
+        $("#qrloading").hide();
+        console.log("connection ok:" + response.id);
+        $.connection.broadcaster.server.subscribe(1);
+        makeCode('{type:pos,id:1}');
+        $("#qrword").show();
+        });
 
-   $.connection.broadcaster.client.addFeed = function (feed){
-        $("#qrcode").hide();
-        $("#qrword").hide();
-        $("#wechatimageurl").html("<img style='height: 200px;' src='"+ feed.WechatImageUrl +"'></img>");
-        $("#wechatname").html("<p>" + feed.WechatName + "</p>");
-        $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
-        $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");
-        $("#wechat").show();
-        $("#counterdown").show();
-        clock = $('.clock').FlipClock(3, {
-		        clockFace: 'Counter',
-				autoStart: true,
-				countdown: true,
-		        callbacks: {
-		        	stop: function() {
-		        		 $("#login").hide();
-                         $("#photogallery").show();
-		        	}
-		        }
-		    });
-    }
+        $.connection.broadcaster.client.addFeed = function (feed){
+                $("#qrcode").hide();
+                $("#qrword").hide();
+                $("#wechatimageurl").html("<img style='height: 200px;' src='"+ feed.WechatImageUrl +"'></img>");
+                $("#wechatname").html("<p>" + feed.WechatName + "</p>");
+                $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
+                $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");
+                $("#wechat").show();
+                $("#counterdown").show();
+                clock = $('.clock').FlipClock(3, {
+                        clockFace: 'Counter',
+                        autoStart: true,
+                        countdown: true,
+                        callbacks: {
+                            stop: function() {
+                                $("#login").hide();
+                                $("#photogallery").show();
+                            }
+                        }
+                    });
+            }
+    });
 }

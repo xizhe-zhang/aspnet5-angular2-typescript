@@ -8,12 +8,13 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/css/alertify.core.css" rel="stylesheet" />
     <link href="~/lib/css/alertify.bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/css/flipclock.css" rel="stylesheet" />
     @*<link href="~/lib/css/alertify.default.css" rel="stylesheet" />*@
 }
 
 <div id="nav-separator"></div>
 
-<photogallery-app style="display:none">
+<photogallery-app style="display:none" id="photogallery">
     <div class="loading">Loading</div>
 </photogallery-app>
 
@@ -23,7 +24,10 @@
         <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
         <span class="sr-only">Loading...</span>
     </div>
-    <div id="qrword" style="margin-top: 30px; font-size: 20px;display:none">
+    <div id="counterdown" style="display:flex; justify-content: center; flex-direction: column; align-items: center; display:none;">
+        <div class="clock" style="margin:2em;"></div>
+    </div>
+    <div id="qrword" style="margin-top: 30px; font-size: 20px;display:none;">
         <span>Scan qrcode to login in pos</span>
     </div>    
     <div id="wechat" style="display:none;">
@@ -45,6 +49,7 @@
     <script src="~/lib/js/jquery.fancybox.pack.js"></script>
     <script src="~/lib/js/alertify.min.js"></script>
     <script src="~/lib/js/qrcode.min.js"></script>
+    <script src="~/lib/js/flipclock.min.js"></script>
 }
 
 @section customScript
@@ -75,16 +80,28 @@
        $("#qrword").show();
     });
 
-    $.connection.broadcaster.client.addFeed = function (feed){
+   $.connection.broadcaster.client.addFeed = function (feed){
         console.log("server call back:" + feed);
-
         $("#qrcode").hide();
         $("#qrword").hide();
         $("#wechatimageurl").html("<img style='height: 400px;' src='"+ feed.WechatImageUrl +"'></img>");
         $("#wechatname").html("<p>" + feed.WechatName + "</p>");
         $("#wechat").show();
+        $("#counterdown").show();
         console.log("login ok!" );
 
+        clock = $('.clock').FlipClock(5, {
+		        clockFace: 'Counter',
+				autoStart: true,
+				countdown: true,
+		        callbacks: {
+		        	stop: function() {
+		        		 $("#wechatname").hide();
+                         $("#wechatimageurl").hide();
+                         $("#wechat").hide();
+                         $("#photogallery").show();
+		        	}
+		        }
+		    });
     }
-
 }

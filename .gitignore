@@ -219,3 +219,12 @@ ModelManifest.xml
 /src/PhotoGallery/migrations
 /src/PhotoGallery/.vscode/launch.json
 /src/PhotoGallery/.vscode/tasks.json
+/src/PhotoGallery/FlipClock/examples
+/src/PhotoGallery/FlipClock/src
+/src/PhotoGallery/FlipClock/.gitignore
+/src/PhotoGallery/FlipClock/bower.json
+/src/PhotoGallery/FlipClock/CHANGE LOG.md
+/src/PhotoGallery/FlipClock/Gruntfile.js
+/src/PhotoGallery/FlipClock/license.txt
+/src/PhotoGallery/FlipClock/package.json
+/src/PhotoGallery/FlipClock/README.md

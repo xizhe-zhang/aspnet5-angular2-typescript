@@ -106,10 +106,16 @@ gulp.task('setup-vendors', function (done) {
         .pipe(gulp.dest(lib + 'jquery-validation'));
 
     gulp.src('bower_components/jquery-validation-unobtrusive/**/*')
-        .pipe(gulp.dest(lib + 'jquery-validation-unobtrusive'));        
+        .pipe(gulp.dest(lib + 'jquery-validation-unobtrusive'));
 
     gulp.src('bower_components/signalr/**/*')
         .pipe(gulp.dest(lib + 'signalr'));
+
+    gulp.src('FlipClock/compiled/*.js')
+        .pipe(gulp.dest(paths.jsVendors));
+
+    gulp.src('FlipClock/compiled/*.css')
+        .pipe(gulp.dest(paths.cssVendors));
 
 });
 

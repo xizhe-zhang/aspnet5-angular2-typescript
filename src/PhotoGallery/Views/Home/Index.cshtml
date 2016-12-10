@@ -82,49 +82,4 @@
 
     }
 
-    /*setTimeout(checkUser, 500);
-    function checkUser()
-    {
-        $.ajax({
-            url: '/api/account/authenticate',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            method: 'POST',
-            dataType: 'json',
-            data: "{Username:'POS', Password:'111'}",
-            success: function(data){
-                console.log('succes: '+data.Succeeded);
-                if(data.Succeeded){
-                     deleteUser(data.Message);
-                     $("#qrcode").hide();
-                     $("#qrword").hide();
-                     $("#wechatimageurl").html("<img style='height: 400px;' src='"+ data.WechatImageURL +"'></img>");
-                     $("#wechatname").html("<p>" + data.WechatName + "</p>");
-                     $("#wechat").show();
-                     console.log("login ok!" );
-                }
-                else{
-                    setTimeout(checkUser, 100);
-                    console.log("check again");
-                }
-            }
-        });
-    }
-
-    function deleteUser(id)
-    {
-        $.ajax({
-            url: '/api/account/delete/' + id,
-            headers: {
-                'Content-Type':'application/json'
-            },
-            method: 'get',
-            dataType: 'json',
-            success: function(data){
-                console.log('succes: '+ data);
-            }
-        });
-    }*/
-
 }

@@ -20,7 +20,7 @@
     <div id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
     <div id="qrloading" style="margin-top: 30px; font-size: 20px;">
         <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-        <span class="sr-only">Loading...</span>
+        <span>Loading...</span>
     </div>
     <div id="counterdown" style="display:flex; justify-content: center; flex-direction: column; align-items: center; display:none;">
         <div class="clock" style="margin:2em;"></div>
@@ -84,8 +84,6 @@
                 $("#qrword").hide();
                 $("#wechatimageurl").html("<img style='height: 200px;' src='"+ feed.WechatImageUrl +"'></img>");
                 $("#wechatname").html("<p>" + feed.WechatName + "</p>");
-                $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
-                $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");
                 $("#wechat").show();
                 $("#counterdown").show();
                 clock = $('.clock').FlipClock(3, {
@@ -96,6 +94,8 @@
                             stop: function() {
                                 $("#login").hide();
                                 $("#photogallery").show();
+                                $("#wechatimageurl_home").html("<img style='height: 35px; ' src='"+ feed.WechatImageUrl +"'></img>");
+                                $("#wechatname_home").html("<p style='margin: 0; '>" + feed.WechatName + "</p>");                                
                             }
                         }
                     });

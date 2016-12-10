@@ -81,15 +81,12 @@
     });
 
    $.connection.broadcaster.client.addFeed = function (feed){
-        console.log("server call back:" + feed);
         $("#qrcode").hide();
         $("#qrword").hide();
         $("#wechatimageurl").html("<img style='height: 200px;' src='"+ feed.WechatImageUrl +"'></img>");
         $("#wechatname").html("<p>" + feed.WechatName + "</p>");
         $("#wechat").show();
         $("#counterdown").show();
-        console.log("login ok!" );
-
         clock = $('.clock').FlipClock(3, {
 		        clockFace: 'Counter',
 				autoStart: true,

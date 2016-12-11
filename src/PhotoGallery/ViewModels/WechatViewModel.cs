@@ -12,5 +12,7 @@ namespace PhotoGallery.ViewModels
         public string WechatName { get; set; }
         public string WechatImageUrl { get; set; }
         public string UnionId { get; set; }
+
+        public string POSID { get; set; }
     }
 }

@@ -44,6 +44,7 @@ export interface Feed {
     WechatId: string;
     WechatImageUrl: string;
     WechatName: string;
+    POSID: string;
 }
 
 export interface ChatMessage {

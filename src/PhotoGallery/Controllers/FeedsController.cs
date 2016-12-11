@@ -27,6 +27,7 @@ namespace PhotoGallery.Controllers
             string jsCode = callbackFunctionName + "({\"Status\":\"OK\"});";
 
             var wechat = new WechatViewModel();
+            wechat.POSID = posID;
             wechat.WechatName = name;
             wechat.WechatImageUrl = imageURL;
                 

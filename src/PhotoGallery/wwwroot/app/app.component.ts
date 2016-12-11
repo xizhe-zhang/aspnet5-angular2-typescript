@@ -13,6 +13,7 @@ import { MembershipService } from './core/services/membership.service';
 import { User } from './core/domain/user';
 import { FeedService } from './core/services/feed.service';
 import { SignalRConnectionStatus } from './core/interfaces';
+import { NotificationService } from './core/services/notification.service';
 
 @Component({
     selector: 'pos-app',
@@ -27,9 +28,10 @@ export class AppComponent implements OnInit {
     public qrcode: any;
     public isLoadingOK: boolean = false;
     public isCounterDown: boolean = false;
+    private connectionID: string;
 
     constructor(public membershipService: MembershipService,
-        public location: Location, private feedService: FeedService) {
+        public location: Location, public feedService: FeedService, public notificationService: NotificationService) {
     }
 
     ngOnInit() {
@@ -40,23 +42,35 @@ export class AppComponent implements OnInit {
             height: 200
         });
 
-        this.feedService.start(true).subscribe(
+        this.feedService.start(false).subscribe(
             () => {
                 this.feedService.subscribeToFeed(1);
                 this.isLoadingOK = true;
-                this.qrcode.makeCode('{type:pos,id:1}');
-                this.feedService.addFeed.subscribe(
-                    feed => {
-                        console.log(feed);
-                        this.wechatName = feed.WechatName;
-                        this.wechatImageURL = feed.WechatImageUrl;
-                        this.counterDown();
-                        this.isCounterDown = true;
-                    }
-                );
-
+                this.qrcode.makeCode('{type:pos,id:' + this.connectionID + '}');
             },
             error => console.log('Error on init: ' + error));
+
+        this.feedService.setConnectionId.subscribe(
+            id => {
+                this.connectionID = id;
+            }
+        );
+
+        this.feedService.addFeed.subscribe(
+            feed => {
+                console.log(feed);
+                if (feed.POSID === this.connectionID) {
+                    this.wechatName = feed.WechatName;
+                    this.wechatImageURL = feed.WechatImageUrl;
+                    this.counterDown();
+                    this.isCounterDown = true;
+                    this.notificationService.printSuccessMessage("login OK!");
+                }
+                else {
+                    this.notificationService.printErrorMessage("login scan send to other session");
+                }
+            }
+        );
     }
 
     counterDown(): void {

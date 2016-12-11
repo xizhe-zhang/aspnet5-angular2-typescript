@@ -72,6 +72,7 @@ export class FeedService {
 
     // Client side methods
     private onSetConnectionId(id: string) {
+        console.log(id);
         this.setConnectionIdSubject.next(id);
     }
 

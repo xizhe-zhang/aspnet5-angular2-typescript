@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
     public wechatName: string = 'test';
     public wechatImageURL: string = 'logo.png';
     public isLoginOK: boolean = false;
-    public qrcode: any;
     public isLoadingOK: boolean = false;
     public isCounterDown: boolean = false;
     private connectionID: string;
@@ -34,13 +33,16 @@ export class AppComponent implements OnInit {
         public location: Location, public feedService: FeedService, public notificationService: NotificationService) {
     }
 
-    ngOnInit() {
-        this.location.go('/');
-
-        this.qrcode = new QRCode(document.getElementById("qrcode"), {
+    createQRcode(elementName: string): void {
+        var qrcode = new QRCode(document.getElementById(elementName), {
             width: 200,
             height: 200
         });
+        qrcode.makeCode('pos:' + this.connectionID);     
+    }
+
+    ngOnInit() {
+        this.location.go('/');
 
         this.feedService.start(false).subscribe(
             null,
@@ -51,7 +53,8 @@ export class AppComponent implements OnInit {
                 this.connectionID = id;
                 this.feedService.subscribeToFeed(1);
                 this.isLoadingOK = true;
-                this.qrcode.makeCode('pos:' + this.connectionID);                
+                this.createQRcode("qrcode");
+                this.createQRcode("qrcode2");
             }
         );
 
@@ -105,5 +108,9 @@ export class AppComponent implements OnInit {
             },
             error => console.error('Error: ' + error),
             () => { });
+    }
+
+    showMyQRcode(): void {
+        $('#test_modal').modal('show');
     }
 }

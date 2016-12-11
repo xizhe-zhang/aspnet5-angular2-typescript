@@ -13,6 +13,24 @@
                 <div style="display:flex; justify-content: center; align-items: center;" id="wechatname_home">
                     <p style="margin: 0;">{{wechatName}}</p>
                 </div>
+                <div (click)="showMyQRcode()" style="margin-left: 5vh;">
+                   <i class="fa fa-qrcode fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="test_modal">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal">&times;</a>
+                <h3>Modal Header</h3>
+            </div>
+            <div class="modal-body" style="display: flex; justify-content: center; align-items: center;">
+                <div style="height: 30vh; width: 60vh; background-color: white; display: flex; justify-content: center; align-items: center;">
+                    <div id="qrcode2" style="width:200px; height:200px; margin-top:15px;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>

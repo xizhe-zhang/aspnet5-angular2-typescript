@@ -43,16 +43,15 @@ export class AppComponent implements OnInit {
         });
 
         this.feedService.start(false).subscribe(
-            () => {
-                this.feedService.subscribeToFeed(1);
-                this.isLoadingOK = true;
-                this.qrcode.makeCode('{type:pos,id:' + this.connectionID + '}');
-            },
+            null,
             error => console.log('Error on init: ' + error));
 
         this.feedService.setConnectionId.subscribe(
             id => {
                 this.connectionID = id;
+                this.feedService.subscribeToFeed(1);
+                this.isLoadingOK = true;
+                this.qrcode.makeCode('{type:pos,id:' + this.connectionID + '}');                
             }
         );
 

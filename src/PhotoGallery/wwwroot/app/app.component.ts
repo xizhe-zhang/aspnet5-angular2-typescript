@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
                 this.connectionID = id;
                 this.feedService.subscribeToFeed(1);
                 this.isLoadingOK = true;
-                this.qrcode.makeCode('{type:pos,id:' + this.connectionID + '}');                
+                this.qrcode.makeCode('pos:' + this.connectionID);                
             }
         );
 

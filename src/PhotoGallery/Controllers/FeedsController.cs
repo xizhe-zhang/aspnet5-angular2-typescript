@@ -24,12 +24,14 @@ namespace PhotoGallery.Controllers
             string posID = Request.Query["posID"];
             string name = Request.Query["name"];
             string imageURL = Request.Query["imageURL"];
+            string unionID = Request.Query["barcode"];
             string jsCode = callbackFunctionName + "({\"Status\":\"OK\"});";
 
             var wechat = new WechatViewModel();
             wechat.POSID = posID;
             wechat.WechatName = name;
             wechat.WechatImageUrl = imageURL;
+            wechat.UnionId = unionID;
                 
             await Clients.Group("1").AddFeed(wechat);
         }

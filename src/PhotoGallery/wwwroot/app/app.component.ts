@@ -62,14 +62,16 @@ export class AppComponent implements OnInit {
             feed => {
                 console.log(feed);
                 if (feed.POSID === this.connectionID) {
-                    this.wechatName = feed.WechatName;
-                    this.wechatImageURL = feed.WechatImageUrl;
-                    this.counterDown();
-                    this.isCounterDown = true;
-                    this.notificationService.printSuccessMessage("login OK!");
+                    if(!this.isCounterDown){
+                        this.wechatName = feed.WechatName;
+                        this.wechatImageURL = feed.WechatImageUrl;
+                        this.counterDown();
+                        this.isCounterDown = true;
+                        this.notificationService.printSuccessMessage("login OK!");
+                    }
                 }
                 else {
-                    this.notificationService.printErrorMessage("login scan send to other session");
+                    //this.notificationService.printErrorMessage("login scan send to other session");
                 }
             }
         );

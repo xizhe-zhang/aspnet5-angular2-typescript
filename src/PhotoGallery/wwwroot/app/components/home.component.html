@@ -5,67 +5,67 @@
             <div class="cart">
                 <h2>Shopping Cart</h2>
                 <ul class="items">
-                    <li ng-repeat="s in cart.cartSkus" ng-class="{'selected':cart.IsActiveCartSku(s.SkuId)}" ng-click="cart.SelectedActiveCartSku(s.SkuId)">
+                    <li *ngFor="let s of cart.cartSkus" [ngClass]="{'selected':cart.IsActiveCartSku(s.SkuId)}" (click)="cart.SelectedActiveCartSku(s.SkuId)">
 
                         <div class="left">
 
-                            <!--<span class="p-name">{{s.SkuName}}</span>
-                            <span class="p-nb">Orig Price:{{s.SPrice | currency}}</span>
-                            <span ng-show="s.OffRate == -20" class="p-nb">Input Price:{{s.PPrice| currency}}</span>
+                            <span class="p-name">{{s.SkuName}}</span>
+                            <span class="p-nb">Orig Price:{{s.SPrice}}</span>
+                            <span ng-show="s.OffRate == -20" class="p-nb">Input Price:{{s.PPrice}}</span>
                             <span ng-show="s.OffRate != -20 && s.OffRate != 100" class="p-nb">Discount:{{s.OffRate}}%</span>
-                            <span class="p-nb"> Qty:{{s.Qty}}</span>-->
+                            <span class="p-nb"> Qty:{{s.Qty}}</span>
 
 
                         </div>
-                        <!--<span class="p-price">{{s.GetPAmt() | currency}}</span>-->
+                        <span class="p-price">{{s.GetPAmt()}}</span>
                         <span class="clear"></span>
                     </li>
                 </ul>
-                <!--<div class="multiple">Multiple:{{cart.GetMultiple()}}</div>
+                <div class="multiple">Multiple:{{cart.GetMultiple()}}</div>
                 <div class="count">
-                    Total：{{cart.GetTotalAmt() | currency}}
-                </div>-->
+                    Total：{{cart.GetTotalAmt()}}
+                </div>
             </div>
 
             <div class="cal">
                 <input type="hidden" />
                 <div class="keyboard item">
                     <ul>
-                        <li><a href="" ng-click="cart.OperatorCmd(1)">1</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(2)">2</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(3)">3</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(4)">4</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(5)">5</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(6)">6</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(7)">7</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(8)">8</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(9)">9</a></li>
-                        <li class="pd-btn"><a href="" ng-click="cart.OperatorCmd('mp')">+/-</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd(0)">0</a></li>
-                        <li><a href="" ng-click="cart.OperatorCmd('p')">.</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(1)">1</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(2)">2</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(3)">3</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(4)">4</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(5)">5</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(6)">6</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(7)">7</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(8)">8</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(9)">9</a></li>
+                        <li class="pd-btn"><a href="#" (click)="cart.OperatorCmd('mp')">+/-</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd(0)">0</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd('p')">.</a></li>
                     </ul>
                 </div>
                 <div class="cal-cate item">
                     <ul>
                         <li>
-                            <a href="" ng-click="cart.SetQtyOperator()" ng-style="{color: cart.IsQtyOperator() ? 'darkgrey' : '#444'}">QTY</a>
+                            <a href="#" (click)="cart.SetQtyOperator()" [ngClass]="{color: cart.IsQtyOperator() ? 'darkgrey' : '#444'}">QTY</a>
                         </li>
                         <li>
-                            <a href="" ng-click="cart.SetDiscountOperator()" ng-style="{color: cart.IsDiscountOperator() ? 'darkgrey' : '#444'}">DCT</a>
+                            <a href="#" (click)="cart.SetDiscountOperator()" [ngClass]="{color: cart.IsDiscountOperator() ? 'darkgrey' : '#444'}">DCT</a>
                         </li>
                         <li>
-                            <a href="" ng-click="cart.SetPriceOperator()" ng-style="{color: cart.IsPriceOperator() ? 'darkgrey' : '#444'}">Pr</a>
+                            <a href="#" (click)="cart.SetPriceOperator()" [ngClass]="{color: cart.IsPriceOperator() ? 'darkgrey' : '#444'}">Pr</a>
                         </li>
                         <li>
-                            <a href="" ng-click="cart.SetMultipleOperator()" ng-style="{color: cart.IsMultipleOperator() ? 'darkgrey' : '#444'}">MUP</a>
+                            <a href="#" (click)="cart.SetMultipleOperator()" [ngClass]="{color: cart.IsMultipleOperator() ? 'darkgrey' : '#444'}">MUP</a>
                         </li>
                     </ul>
                 </div>
                 <div class="cal-opt item">
                     <ul>
-                        <li><a href="" ng-click="cart.OperatorCmd('d')">Del</a></li>
-                        <li><a href="" ng-click="cart.Clear();">Clear</a></li>
-                        <li><a href="" ng-click="SaveOrder();">CheckOut</a></li>
+                        <li><a href="#" (click)="cart.OperatorCmd('d')">Del</a></li>
+                        <li><a href="#" (click)="cart.Clear();">Clear</a></li>
+                        <!--<li><a href="" (click)="SaveOrder();">CheckOut</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -74,21 +74,20 @@
         <div id="rightbox" class="right-col">
             <div class="tool-bar" id="toolbar">
                 <div class="search">
-                    <input type="text" class="text" placeholder="Search" ng-model="searchSku.SkuName" />
-                    <button class="btn">Search</button>
+                    <input type="text" class="text" placeholder="Search" ng-model="searchSku" />
+                    <button class="btn" (click)="searchProduct()">Search</button>
                 </div>
                 <div class="clear"></div>
             </div>
 
             <div class="p-list" id="plist">
-                <!--<div class="p-item" ng-repeat="s in sku.skus | filter:searchSku track by s.SkuId" ng-click="cart.AddSku(sku.GetById(s.SkuId),cart.GetMultiple())">
-                    <a onclick="return false;" title={{product.name}}>
-                        <img src="images/products/{{s.SkuCode}}.png" alt="">
-
+                <div class="p-item" *ngFor="let s of sku.skus" (click)="addToCart(s)">
+                    <a onclick="return false;" title={{s.SkuName}}>
+                        <img src="images/products/{{s.SkuCode}}.jpg" alt="">
                         <span class="p-name">{{s.SkuName}}</span>
-                        <span class="p-label">{{s.SkuPrice | currency}}</span>
+                        <span class="p-label">{{s.SkuPrice}}</span>
                     </a>
-                </div>-->
+                </div>
                 <div class="clear"></div>
             </div>
             <div id="divbg" style="display: none;">

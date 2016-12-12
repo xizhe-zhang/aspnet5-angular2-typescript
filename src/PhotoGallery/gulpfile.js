@@ -120,6 +120,9 @@ gulp.task('setup-vendors', function (done) {
     gulp.src('NetSDL/*.css')
         .pipe(gulp.dest(paths.cssVendors));        
 
+    gulp.src('NetSDL/*.js')
+        .pipe(gulp.dest(paths.jsVendors));            
+
 });
 
 gulp.task('compile-typescript', function (done) {

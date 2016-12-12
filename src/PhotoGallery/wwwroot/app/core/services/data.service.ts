@@ -24,6 +24,13 @@ export class DataService {
             .map(response => (<Response>response));
     }
 
+    getProducts(storeId: string, page: number) {
+        var uri = this._baseUri + storeId + '/' + page.toString() + '/' + this._pageSize.toString();
+
+        return this.http.get(uri)
+            .map(response => (<Response>response));
+    }
+
     post(data?: any, mapJson: boolean = true) {
         if (mapJson)
             return this.http.post(this._baseUri, data)

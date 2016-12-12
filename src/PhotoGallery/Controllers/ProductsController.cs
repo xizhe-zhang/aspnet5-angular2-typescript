@@ -28,7 +28,6 @@ namespace PhotoGallery.Controllers
         public PaginationSet<ProductViewModel> Get(int? storeId, int? page, int? pageSize)
         {
             PaginationSet<ProductViewModel> pagedSet = null;
-
             try
             {
                 int currentPage = page.Value;
@@ -46,8 +45,6 @@ namespace PhotoGallery.Controllers
                     .ToList();
 
                 _totalProducts = _productRepository.FindBy(p => p.StoreId == storeId).Count();
-
-                Console.Out.WriteLine(_totalProducts.ToString());
 
                 IEnumerable<ProductViewModel> _productsVM = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_products);
 

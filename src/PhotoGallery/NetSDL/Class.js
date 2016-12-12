@@ -1,4 +1,59 @@
-﻿
+﻿/*orderline*/
+function DTOOrderLine(skuName, reqQty, PPrice, sku)
+{
+    this.SkuName = skuName;
+    this.ReqQty = reqQty;
+    this.PPrice = PPrice;
+    this.Sku = sku;
+}
+
+function OrderLine()
+{
+    this.lines = new Array();
+}
+
+OrderLine.prototype.AddOrderLine = function (skuName, reqQty, PPrice, sku) {
+    this.lines.push(new DTOOrderLine(skuName, reqQty, PPrice, sku));
+}
+
+
+/*cust*/
+function DTOCust(custId, custNo, custName,orderLines) {
+    this.CustId = custId;
+    this.CustNo = custNo;
+    this.CustName = custName;
+    this.OrderLines = orderLines;
+}
+function Cust() {
+    this.custs = new Array();
+    this.activeCust = null;
+    this.currentPageIndex = 0;
+    this.loadDone = false;
+}
+
+Cust.prototype.changePageIndex = function (pageIndex) {
+    this.currentPageIndex = pageIndex;
+}
+
+Cust.prototype.AddCust = function (custId, custNo, custName, OrderLine) {
+    this.custs.push(new DTOCust(custId, custNo, custName, OrderLine));
+}
+
+Cust.prototype.setActiveCust = function (custId) {
+    for (var i = 0; i < this.custs.length; i++) {
+        var s = this.custs[i];
+        if (s.CustId == custId) {
+            this.activeCust = s;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+Cust.prototype.GetCount = function () {
+    return this.custs.length;
+}
 
 /*SKU*/
 function DTOSku(skuId, skuCode, skuName, skuPrice,barCode) {

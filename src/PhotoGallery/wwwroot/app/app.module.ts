@@ -8,6 +8,7 @@ import { Headers, RequestOptions, BaseRequestOptions } from '@angular/http';
 import { AccountModule } from './components/account/account.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home.component';
+import { CustomersComponent } from './components/customers.component';
 import { routing } from './routes';
 
 import { DataService } from './core/services/data.service';
@@ -33,7 +34,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         routing,
         AccountModule
     ],
-    declarations: [AppComponent, HomeComponent],
+    declarations: [AppComponent, HomeComponent, CustomersComponent],
     providers: [DataService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],

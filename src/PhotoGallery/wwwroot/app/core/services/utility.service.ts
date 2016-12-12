@@ -1,11 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { Feed } from '../interfaces';
 
 @Injectable()
 export class UtilityService {
 
     private _router: Router;
     private connectionID: string;
+    private feed: Feed
 
     constructor(router: Router) {
         this._router = router;
@@ -24,11 +26,19 @@ export class UtilityService {
         this.navigate('/account/login');
     }
 
-    setConnectionId(connectionID: string){
+    setConnectionId(connectionID: string) {
         this.connectionID = connectionID;
     }
 
-    getConnectionId():string{
+    getConnectionId(): string {
         return this.connectionID;
+    }
+
+    setFeed(feed: Feed){
+        this.feed = feed;
+    }
+
+    getFeed():Feed{
+        return this.feed;
     }
 }

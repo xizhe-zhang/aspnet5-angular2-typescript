@@ -1,0 +1,62 @@
+<!-- first block start -->
+<div id="mainDiv" class="main">
+    <div class="container">
+        <div id="leftbox-cust" class="left-col-cust">
+            <div class="custinfo">
+                <h2>
+                    Customer Information
+                </h2>
+                <ul class="items">
+                    <li ng-show="cust.loadDone==true">
+                        <span class="p-name-cust">Customer No:</span> <span class="p-price-cust">{{cust.activeCust.CustNo}}</span>
+
+                    </li>
+                    <li ng-show="cust.loadDone==true">
+                        <span class="p-name-cust">Customer Name:</span> <span class="p-price-cust">{{cust.activeCust.CustName}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="cust-back">
+                <a class="button icon arrowleft" onclick="location.reload();">Back</a>
+            </div>
+            <div class="cust-forward">
+                <a class="button icon arrowright" [routerLink]="['/home']">Goto Buy</a>
+            </div>
+
+        </div>
+        <div id="rightbox-cust" class="right-col-cust">
+            <div class="tool-bar">
+                <div class="clear">
+                </div>
+            </div>
+            <div class="p-list">
+                <ul class="p-list-orderline">
+                    <li *ngFor="let ol of cust.activeCust.OrderLines.lines">
+                        <div class="cust-right">
+                            <span class="p-name-orderline">{{ol.SkuName}}</span> <span class="p-nb-orderline">
+                                    ×{{ol.ReqQty}}件 at {{ol.PPrice| currency}}／件
+                                </span>
+                        </div>
+                        <div class="orderline-img-position">
+                            <span class="p-price-orderline"><img src="images/products/{{ol.Sku}}.jpg" alt=""></span> <span class="clear"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        $('#leftbox').attr('style', 'height:' + (window.innerHeight - 45) + 'px')
+        $('.items').attr('style', 'height:' + (window.innerHeight - 136) + 'px')
+        $('#rightbox').attr('style', 'height:' + (window.innerHeight - 50) + 'px')
+        $('.p-list').attr('style', 'height:' + (window.innerHeight - 100) + 'px')
+
+        window.onresize = function () {
+            $('#leftbox').attr('style', 'height:' + (window.innerHeight - 45) + 'px')
+            $('.items').attr('style', 'height:' + (window.innerHeight - 136) + 'px')
+            $('#rightbox').attr('style', 'height:' + (window.innerHeight - 50) + 'px')
+            $('.p-list').attr('style', 'height:' + (window.innerHeight - 100) + 'px')
+        }
+</script>

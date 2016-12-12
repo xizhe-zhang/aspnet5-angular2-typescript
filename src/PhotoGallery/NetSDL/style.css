@@ -292,7 +292,7 @@ span.p-price {
     text-align: right;
     padding: 0 3%;
     float:right;
-    width:40%;
+    width:52%;
     display:inline;
     position:relative;
 }
@@ -792,13 +792,13 @@ a .p-name {
 
     .cust-back a {
         font-family: Helvetica;
-        width: 70px;
+        width: 120px;
         padding-left: 30px;
     }
 
 .cust-forward a {
     font-family: Helvetica;
-    width: 76px;
+    width: 120px;
     padding-right: 24px;
 }
 

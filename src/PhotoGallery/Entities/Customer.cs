@@ -7,6 +7,7 @@ namespace PhotoGallery.Entities
     {
         public Customer()
         {
+            this.Sessions = new HashSet<Session>();
             this.Orders = new HashSet<Order>();
         }
     
@@ -18,6 +19,8 @@ namespace PhotoGallery.Entities
         public Nullable<int> WechatId { get; set; }
     
         public virtual Wechat Wechat { get; set; }
+        public virtual Store Store { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Session> Sessions { get; set; }
     }
 }

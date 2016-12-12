@@ -11,6 +11,7 @@ namespace PhotoGallery.Entities
             this.Products = new HashSet<Product>();
             this.Sessions = new HashSet<Session>();
             this.Users = new HashSet<User>();
+            this.Customers = new HashSet<Customer>();
         }
     
         public int Id { get; set; }
@@ -21,5 +22,6 @@ namespace PhotoGallery.Entities
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Session> Sessions { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

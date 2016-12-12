@@ -11,5 +11,10 @@ namespace PhotoGallery.Infrastructure.Repositories
         public WechatRepository(PhotoGalleryContext context)
             : base(context)
         { }
+
+        public Wechat GetSingleByWechatId(string wechatId)
+        {
+            return this.GetSingle(x => x.WechatId == wechatId);
+        }
     }
 }

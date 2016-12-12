@@ -76,10 +76,15 @@ namespace PhotoGallery
             services.AddScoped<ILoggingRepository, LoggingRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IWechatRepository, WechatRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISessionRepository, SessionRepository>();
 
             // Services
             services.AddScoped<IMembershipService, MembershipService>();
             services.AddScoped<IEncryptionService, EncryptionService>();
+            services.AddScoped<IWechatService, WechatService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ISessionService, SessionService>();
 
             services.AddAuthentication();
 

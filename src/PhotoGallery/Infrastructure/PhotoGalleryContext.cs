@@ -60,9 +60,11 @@ namespace PhotoGallery.Infrastructure
 
             // Store
             modelBuilder.Entity<Store>().HasMany(a => a.Products).WithOne(p => p.Store);
+            modelBuilder.Entity<Store>().HasMany(a => a.Customers).WithOne(p => p.Store);
 
             // Wechat
             modelBuilder.Entity<Wechat>().HasMany(a => a.Users).WithOne(p => p.Wechat);
+      
 
         }
     }

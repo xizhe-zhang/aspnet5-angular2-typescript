@@ -3,37 +3,83 @@ using Microsoft.AspNetCore.SignalR.Infrastructure;
 using PhotoGallery.Hubs;
 using PhotoGallery.ViewModels;
 using AutoMapper;
+using PhotoGallery.Infrastructure.Services;
+using PhotoGallery.Infrastructure.Repositories;
+using PhotoGallery.Infrastructure.Core;
+using PhotoGallery.Entities;
+using System.Threading.Tasks;
+using System;
 
 namespace PhotoGallery.Controllers
 {
     [Route("api/[controller]")]
     public class FeedsController : ApiHubController<Broadcaster>
     {
-
+        ICustomerService _customerService;
+        IWechatService _wechatService;
+        ISessionService _sessionService;
+        ILoggingRepository _loggingRepository;
         public FeedsController(
-            IConnectionManager signalRConnectionManager)
+            IConnectionManager signalRConnectionManager, ICustomerService customerService, IWechatService wechatService, ISessionService sessionService, ILoggingRepository loggingRepository)
         : base(signalRConnectionManager)
         {
+            this._customerService = customerService;
+            this._wechatService = wechatService;
+            this._sessionService = sessionService;
+            this._loggingRepository = loggingRepository;
         }
 
         // POST api/feeds
         [HttpGet("pos/{id:int}")]
-        public async void Get(int id)
+        public async Task<string> Get(int id)
         {
-            string callbackFunctionName = Request.Query["callback"];
-            string posID = Request.Query["posID"];
-            string name = Request.Query["name"];
-            string imageURL = Request.Query["imageURL"];
-            string unionID = Request.Query["barcode"];
-            string jsCode = callbackFunctionName + "({\"Status\":\"OK\"});";
 
-            var wechat = new WechatViewModel();
-            wechat.POSID = posID;
-            wechat.WechatName = name;
-            wechat.WechatImageUrl = imageURL;
-            wechat.UnionId = unionID;
-                
-            await Clients.Group("1").AddFeed(wechat);
+            Console.WriteLine("FeedsController");
+            string callbackFunctionName = Request.Query["callback"];
+            string type = Request.Query["type"];
+            string sessionKey = Request.Query["sessionKey"];
+            string jsCode = callbackFunctionName + "({\"Status\":\"OK\"});";
+            string wechatID = "";
+            string name = "";
+            string imageURL = "";
+            string barcode = "";
+
+            try
+            {
+                if (type.Equals("login"))
+                {
+                    Console.WriteLine("login");
+                    wechatID = Request.Query["wechatID"];
+                    name = Request.Query["name"];
+                    imageURL = Request.Query["imageURL"];
+                    Wechat wechat = this._wechatService.CreateWechat(wechatID, name, imageURL);
+                    Console.WriteLine("wechat");
+                    Customer customer = this._customerService.CreateCustomer(name, name + "@netsdl.com", wechat.Id);
+                    Console.WriteLine("customerId=" + customer.Id.ToString());
+                    Session session = this._sessionService.CreateSession(sessionKey, customer.Id);
+                };
+
+                if (type.Equals("barcode"))
+                {
+                    Console.WriteLine("barcode");
+                    barcode = Request.Query["barcode"];
+                }
+
+                var wechatModel = new WechatViewModel();
+                wechatModel.SessionKey = sessionKey;
+                wechatModel.WechatName = name;
+                wechatModel.WechatImageUrl = imageURL;
+                wechatModel.Barcode = barcode;
+
+                await Clients.Group("1").AddFeed(wechatModel);
+            }
+            catch (Exception ex)
+            {
+                _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+            }
+
+            return jsCode;
         }
 
     }

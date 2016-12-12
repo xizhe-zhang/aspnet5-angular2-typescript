@@ -9,7 +9,7 @@ function DTOOrderLine(skuName, reqQty, PPrice, sku)
 
 function OrderLine()
 {
-    this.lines = new Array();s
+    this.lines = new Array();
 }
 
 OrderLine.prototype.AddOrderLine = function (skuName, reqQty, PPrice, sku) {
@@ -24,6 +24,7 @@ function DTOCust(custId, custNo, custName,orderLines) {
     this.CustName = custName;
     this.OrderLines = orderLines;
 }
+
 function Cust() {
     this.custs = new Array();
     this.activeCust = null;

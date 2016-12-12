@@ -9,7 +9,7 @@ function DTOOrderLine(skuName, reqQty, PPrice, sku)
 
 function OrderLine()
 {
-    this.lines = new Array();
+    this.lines = new Array();s
 }
 
 OrderLine.prototype.AddOrderLine = function (skuName, reqQty, PPrice, sku) {

@@ -23,11 +23,11 @@ export class HomeComponent extends Paginated implements OnInit {
         super(0, 0, 0);
         this.sku = new Sku();
         this.cart = new ShoppingCart();
-        this.connectionID = this.utilityService.getConnectionId();
-
+        
         this.feedService.addFeed.subscribe(
             feed => {
                 console.log(feed);
+                this.connectionID = this.utilityService.getConnectionId();
                 if(feed.SessionKey === this.connectionID) {
                     if (feed.Barcode !== undefined && feed.Barcode !== null) {
                         let barCode = feed.Barcode

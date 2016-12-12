@@ -33,8 +33,6 @@ namespace PhotoGallery.Controllers
         [HttpGet("pos/{id:int}")]
         public async Task<string> Get(int id)
         {
-
-            Console.WriteLine("FeedsController");
             string callbackFunctionName = Request.Query["callback"];
             string type = Request.Query["type"];
             string sessionKey = Request.Query["sessionKey"];
@@ -48,20 +46,16 @@ namespace PhotoGallery.Controllers
             {
                 if (type.Equals("login"))
                 {
-                    Console.WriteLine("login");
                     wechatID = Request.Query["wechatID"];
                     name = Request.Query["name"];
                     imageURL = Request.Query["imageURL"];
                     Wechat wechat = this._wechatService.CreateWechat(wechatID, name, imageURL);
-                    Console.WriteLine("wechat");
                     Customer customer = this._customerService.CreateCustomer(name, name + "@netsdl.com", wechat.Id);
-                    Console.WriteLine("customerId=" + customer.Id.ToString());
                     Session session = this._sessionService.CreateSession(sessionKey, customer.Id);
                 };
 
                 if (type.Equals("barcode"))
                 {
-                    Console.WriteLine("barcode");
                     barcode = Request.Query["barcode"];
                 }
 

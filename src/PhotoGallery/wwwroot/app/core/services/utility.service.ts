@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 export class UtilityService {
 
     private _router: Router;
+    private connectionID: string;
 
     constructor(router: Router) {
         this._router = router;
@@ -21,5 +22,13 @@ export class UtilityService {
 
     navigateToSignIn() {
         this.navigate('/account/login');
+    }
+
+    setConnectionId(connectionID: string){
+        this.connectionID = connectionID;
+    }
+
+    getConnectionId():string{
+        return this.connectionID;
     }
 }

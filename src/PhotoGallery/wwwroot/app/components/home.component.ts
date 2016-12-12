@@ -5,6 +5,7 @@ import { DataService } from '../core/services/data.service';
 import { FeedService } from '../core/services/feed.service';
 import { SignalRConnectionStatus } from '../core/interfaces';
 import { NotificationService } from '../core/services/notification.service';
+import { UtilityService } from '../core/services/utility.service';
 
 @Component({
     selector: 'home',
@@ -15,32 +16,36 @@ export class HomeComponent extends Paginated implements OnInit {
     private _products: Array<Product>;
     public sku: any;
     public cart: any;
+    private connectionID: string;
 
 
-    constructor(public productsService: DataService, public feedService: FeedService, public notificationService: NotificationService) {
+    constructor(public productsService: DataService, public feedService: FeedService, public notificationService: NotificationService, public utilityService: UtilityService) {
         super(0, 0, 0);
         this.sku = new Sku();
         this.cart = new ShoppingCart();
+        this.connectionID = this.utilityService.getConnectionId();
 
         this.feedService.addFeed.subscribe(
             feed => {
                 console.log(feed);
-                if (feed.UnionId !== undefined && feed.UnionId !== null) {
-                    let barCode = feed.UnionId
-                    this.searchProduct();
-                    let scanSku = this.sku.GetSkuByBarCode(barCode);
-                    if (scanSku != null) {
-                        this.cart.AddSku(scanSku, this.cart.GetMultiple());
-                        this.notificationService.printSuccessMessage("barcode:" + barCode);
-                        this.sku = new Sku();
-                        for (let origSku of this._products) {
-                            if (origSku.BarCode === barCode)
-                                this.sku.AddSku(origSku.SkuId, origSku.SkuCode, origSku.SkuName, origSku.SkuPrice, origSku.BarCode);
+                if(feed.SessionKey === this.connectionID) {
+                    if (feed.Barcode !== undefined && feed.Barcode !== null) {
+                        let barCode = feed.Barcode
+                        this.searchProduct();
+                        let scanSku = this.sku.GetSkuByBarCode(barCode);
+                        if (scanSku != null) {
+                            this.cart.AddSku(scanSku, this.cart.GetMultiple());
+                            this.notificationService.printSuccessMessage("barcode:" + barCode);
+                            this.sku = new Sku();
+                            for (let origSku of this._products) {
+                                if (origSku.BarCode === barCode)
+                                    this.sku.AddSku(origSku.SkuId, origSku.SkuCode, origSku.SkuName, origSku.SkuPrice, origSku.BarCode);
+                            }
                         }
                     }
                 }
             }
-        );
+        )
     }
 
     searchProduct(): void {

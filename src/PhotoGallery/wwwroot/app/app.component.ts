@@ -14,6 +14,7 @@ import { User } from './core/domain/user';
 import { FeedService } from './core/services/feed.service';
 import { SignalRConnectionStatus } from './core/interfaces';
 import { NotificationService } from './core/services/notification.service';
+import { UtilityService } from './core/services/utility.service';
 
 @Component({
     selector: 'pos-app',
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
     private connectionID: string;
 
     constructor(public membershipService: MembershipService,
-        public location: Location, public feedService: FeedService, public notificationService: NotificationService) {
+        public location: Location, public feedService: FeedService, public notificationService: NotificationService, public utilityService: UtilityService) {
     }
 
     createQRcode(elementName: string): void {
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
         this.feedService.setConnectionId.subscribe(
             id => {
                 this.connectionID = id;
+                this.utilityService.setConnectionId(id);
                 this.feedService.subscribeToFeed(1);
                 this.isLoadingOK = true;
                 this.createQRcode("qrcode");
@@ -61,7 +63,7 @@ export class AppComponent implements OnInit {
         this.feedService.addFeed.subscribe(
             feed => {
                 console.log(feed);
-                if (feed.POSID === this.connectionID) {
+                if (feed.SessionKey === this.connectionID) {
                     if(!this.isCounterDown){
                         this.wechatName = feed.WechatName;
                         this.wechatImageURL = feed.WechatImageUrl;

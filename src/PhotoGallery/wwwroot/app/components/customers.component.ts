@@ -15,7 +15,7 @@ export class CustomersComponent extends Paginated implements OnInit {
     private cust: any;
     private connectionID: string;
 
-    constructor(public productsService: DataService, public utilityService: UtilityService, public feedService: FeedService, ) {
+    constructor(public productsService: DataService, public utilityService: UtilityService, public feedService: FeedService) {
         super(0, 0, 0);
         this.cust = new Cust();
         let lines = new OrderLine();
@@ -36,7 +36,7 @@ export class CustomersComponent extends Paginated implements OnInit {
     }
 
     getCustomer(): void {
-        this.productsService.set(this._productAPI, 12);
+        this.productsService.set(this._productAPI, 50);
         this.productsService.getProducts("1", 0)
             .subscribe(res => {
                 var data: any = res.json();
@@ -51,7 +51,7 @@ export class CustomersComponent extends Paginated implements OnInit {
                 let index = 0;
                 for (let product of this._products) {
                     if (index <= sec % 5)
-                        lines.AddOrderLine(product.SkuName, Math.floor(Math.random() * (5 - 1) + 1), product.SkuPrice, product.SkuCode);
+                        lines.AddOrderLine(product.SkuName, Math.floor(Math.random() * (10 - 1) + 1), product.SkuPrice, product.SkuCode);
                     index = index + 1;
                 }
                 let feed = this.utilityService.getFeed();

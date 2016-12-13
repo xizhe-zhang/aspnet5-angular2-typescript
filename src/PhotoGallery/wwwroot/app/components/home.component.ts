@@ -56,7 +56,7 @@ export class HomeComponent extends Paginated implements OnInit {
     }
 
     ngOnInit() {
-        this.productsService.set(this._productAPI, 12);
+        this.productsService.set(this._productAPI, 50);
         this.getProducts();
     }
 

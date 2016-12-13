@@ -31,40 +31,40 @@
                 <input type="hidden" />
                 <div class="keyboard item">
                     <ul>
-                        <li><a href="#" (click)="cart.OperatorCmd(1)">1</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(2)">2</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(3)">3</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(4)">4</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(5)">5</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(6)">6</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(7)">7</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(8)">8</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(9)">9</a></li>
-                        <li class="pd-btn"><a href="#" (click)="cart.OperatorCmd('mp')">+/-</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd(0)">0</a></li>
-                        <li><a href="#" (click)="cart.OperatorCmd('p')">.</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(1)">1</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(2)">2</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(3)">3</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(4)">4</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(5)">5</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(6)">6</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(7)">7</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(8)">8</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(9)">9</a></li>
+                        <li class="pd-btn"><a href="#/home" (click)="cart.OperatorCmd('mp')">+/-</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd(0)">0</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd('p')">.</a></li>
                     </ul>
                 </div>
                 <div class="cal-cate item">
                     <ul>
                         <li>
-                            <a href="#" (click)="cart.SetQtyOperator()" [ngClass]="{color: cart.IsQtyOperator() ? 'darkgrey' : '#444'}">QTY</a>
+                            <a href="#/home" (click)="cart.SetQtyOperator()" [ngClass]="{color: cart.IsQtyOperator() ? 'darkgrey' : '#444'}">QTY</a>
                         </li>
                         <li>
-                            <a href="#" (click)="cart.SetDiscountOperator()" [ngClass]="{color: cart.IsDiscountOperator() ? 'darkgrey' : '#444'}">DCT</a>
+                            <a href="#/home" (click)="cart.SetDiscountOperator()" [ngClass]="{color: cart.IsDiscountOperator() ? 'darkgrey' : '#444'}">DCT</a>
                         </li>
                         <li>
-                            <a href="#" (click)="cart.SetPriceOperator()" [ngClass]="{color: cart.IsPriceOperator() ? 'darkgrey' : '#444'}">Pr</a>
+                            <a href="#/home" (click)="cart.SetPriceOperator()" [ngClass]="{color: cart.IsPriceOperator() ? 'darkgrey' : '#444'}">Pr</a>
                         </li>
                         <li>
-                            <a href="#" (click)="cart.SetMultipleOperator()" [ngClass]="{color: cart.IsMultipleOperator() ? 'darkgrey' : '#444'}">MUP</a>
+                            <a href="#/home" (click)="cart.SetMultipleOperator()" [ngClass]="{color: cart.IsMultipleOperator() ? 'darkgrey' : '#444'}">MUP</a>
                         </li>
                     </ul>
                 </div>
                 <div class="cal-opt item">
                     <ul>
-                        <li><a href="#" (click)="cart.OperatorCmd('d')">Del</a></li>
-                        <li><a href="#" (click)="cart.Clear();">Clear</a></li>
+                        <li><a href="#/home" (click)="cart.OperatorCmd('d')">Del</a></li>
+                        <li><a href="#/home" (click)="cart.Clear();">Clear</a></li>
                         <li><a href="#/home">CheckOut</a></li>
                     </ul>
                 </div>

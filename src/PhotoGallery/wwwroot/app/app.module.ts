@@ -36,6 +36,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
     ],
     declarations: [AppComponent, HomeComponent, CustomersComponent],
     providers: [DataService, MembershipService, UtilityService, NotificationService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],
     bootstrap: [AppComponent]
 })

@@ -15,6 +15,7 @@ import { DataService } from './core/services/data.service';
 import { MembershipService } from './core/services/membership.service';
 import { UtilityService } from './core/services/utility.service';
 import { NotificationService } from './core/services/notification.service';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 class AppBaseRequestOptions extends BaseRequestOptions {
     headers: Headers = new Headers();
@@ -32,7 +33,8 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         FormsModule,
         HttpModule,
         routing,
-        AccountModule
+        AccountModule,
+        Ng2AutoCompleteModule
     ],
     declarations: [AppComponent, HomeComponent, CustomersComponent],
     providers: [DataService, MembershipService, UtilityService, NotificationService,

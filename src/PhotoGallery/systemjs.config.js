@@ -24,6 +24,7 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
+            'ng2-auto-complete': 'npm:ng2-auto-complete/dist',
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -37,6 +38,10 @@
             'angular2-in-memory-web-api': {
                 main: './index.js',
                 defaultExtension: 'js'
+            },
+            'ng2-auto-complete': {
+                main: 'ng2-auto-complete.umd.js',
+                defaultExtension: 'js' 
             }
         }
     });

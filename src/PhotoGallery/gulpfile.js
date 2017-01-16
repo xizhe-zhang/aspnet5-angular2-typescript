@@ -118,10 +118,14 @@ gulp.task('setup-vendors', function (done) {
         .pipe(gulp.dest(paths.cssVendors));
 
     gulp.src('NetSDL/*.css')
-        .pipe(gulp.dest(paths.cssVendors));        
+        .pipe(gulp.dest(paths.cssVendors));
 
     gulp.src('NetSDL/*.js')
-        .pipe(gulp.dest(paths.jsVendors));            
+        .pipe(gulp.dest(paths.jsVendors));
+
+    gulp.src('node_modules/' + "ng2-auto-complete/**/*.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
 
 });
 

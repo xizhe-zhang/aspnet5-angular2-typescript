@@ -66,6 +66,7 @@
             </div>
         </div>
         <div style="display:flex; flex-direction: column; align-items: center;">
+            <input auto-complete [(ngModel)]="model1" [source]="arrayOfStrings" />
             <div [hidden]="!isLoadingOK" id="qrcode" style="width:200px; height:200px; margin-top:15px;">
             </div>
             <div [hidden]="isLoadingOK" id="qrloading" style="margin-top: 30px; font-size: 20px;">

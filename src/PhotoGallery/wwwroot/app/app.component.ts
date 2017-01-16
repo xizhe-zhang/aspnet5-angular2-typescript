@@ -31,6 +31,9 @@ export class AppComponent implements OnInit {
     public isCounterDown: boolean = false;
     private connectionID: string;
 
+    arrayOfStrings: string[] = ["this", "is", "array", "of", "text"];
+    model1 = "is";
+
     constructor(public membershipService: MembershipService,
         public location: Location, public feedService: FeedService, public notificationService: NotificationService, public utilityService: UtilityService, public productsService: DataService) {
     }

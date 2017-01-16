@@ -8,6 +8,9 @@ export class DataService {
     public _pageSize: number;
     public _baseUri: string;
 
+    public _storeId: string;
+    public _token: string;
+
     constructor(public http: Http) {
 
     }

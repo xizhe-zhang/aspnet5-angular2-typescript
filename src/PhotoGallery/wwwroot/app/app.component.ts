@@ -15,6 +15,7 @@ import { FeedService } from './core/services/feed.service';
 import { SignalRConnectionStatus } from './core/interfaces';
 import { NotificationService } from './core/services/notification.service';
 import { UtilityService } from './core/services/utility.service';
+import { DataService } from './core/services/data.service';
 
 @Component({
     selector: 'pos-app',
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
     private connectionID: string;
 
     constructor(public membershipService: MembershipService,
-        public location: Location, public feedService: FeedService, public notificationService: NotificationService, public utilityService: UtilityService) {
+        public location: Location, public feedService: FeedService, public notificationService: NotificationService, public utilityService: UtilityService, public productsService: DataService) {
     }
 
     createQRcode(elementName: string): void {
@@ -43,7 +44,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.location.go('/');
 
         this.feedService.start(false).subscribe(
             null,

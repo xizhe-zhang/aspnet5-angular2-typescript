@@ -4,6 +4,8 @@ import { Paginated } from '../core/common/paginated';
 import { DataService } from '../core/services/data.service';
 import { UtilityService } from '../core/services/utility.service';
 import { FeedService } from '../core/services/feed.service';
+import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from '../core/services/notification.service';
 
 @Component({
     selector: 'customers',
@@ -15,7 +17,7 @@ export class CustomersComponent extends Paginated implements OnInit {
     private cust: any;
     private connectionID: string;
 
-    constructor(public productsService: DataService, public utilityService: UtilityService, public feedService: FeedService) {
+    constructor(public productsService: DataService, public utilityService: UtilityService, public feedService: FeedService, private route: ActivatedRoute, public notificationService: NotificationService) {
         super(0, 0, 0);
         this.cust = new Cust();
         let lines = new OrderLine();
@@ -24,6 +26,22 @@ export class CustomersComponent extends Paginated implements OnInit {
     }
 
     ngOnInit() {
+        var storeId = "";
+        var token = "";
+        this.route
+            .queryParams
+            .subscribe(params => {
+                storeId = params['storeid'];
+                token = params['token'];
+                console.log(storeId, token); // you should get your parameters here
+                this.productsService._storeId = storeId;
+                this.productsService._token = token;
+                
+                if(token===null||token===undefined||token===""){
+                    this.notificationService.printConfirmationDialog("token isvalid!",null);
+                }
+            });        
+
         this.feedService.addFeed.subscribe(
             feed => {
                 console.log(feed);

@@ -37,9 +37,9 @@ export class CustomersComponent extends Paginated implements OnInit {
                 this.productsService._storeId = storeId;
                 this.productsService._token = token;
                 
-                if(token===null||token===undefined||token===""){
-                    this.notificationService.printConfirmationDialog("token isvalid!",null);
-                }
+                // if(token===null||token===undefined||token===""){
+                //     this.notificationService.printConfirmationDialog("token isvalid!",null);
+                // }
             });        
 
         this.feedService.addFeed.subscribe(

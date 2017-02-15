@@ -8,7 +8,7 @@ node {
    }   
    stage('Copy Build Files') {
         dir('src/PhotoGallery') {
-			sh 'cp -r /home/project-pos/* .'
+			sh 'cp -r /home/project-pos-1/* .'
         }
    }   
    stage('Build Gulp') {

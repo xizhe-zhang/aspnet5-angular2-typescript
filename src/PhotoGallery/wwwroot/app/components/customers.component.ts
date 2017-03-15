@@ -49,6 +49,9 @@ export class CustomersComponent extends Paginated implements OnInit {
                 if (feed.SessionKey === this.connectionID) {
 
                     switch (feed.WechatName) {
+                        case "熙哲":
+                            this.productsService._posStoreId = "5";
+                            break;
                         case "WEI2":
                             this.productsService._posStoreId = "5";
                             break;

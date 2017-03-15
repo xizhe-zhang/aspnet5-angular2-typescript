@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
             width: 200,
             height: 200
         });
-        qrcode.makeCode('pos:' + this.connectionID);     
+        qrcode.makeCode('pos:' + this.connectionID);
     }
 
     ngOnInit() {
@@ -67,10 +67,19 @@ export class AppComponent implements OnInit {
             feed => {
                 console.log(feed);
                 if (feed.SessionKey === this.connectionID) {
-                    if(!this.isCounterDown){
+                    if (!this.isCounterDown) {
                         this.utilityService.setFeed(feed);
                         this.wechatName = feed.WechatName;
                         this.wechatImageURL = feed.WechatImageUrl;
+
+                        switch (feed.WechatName) {
+                            case "熙哲":
+                                this.productsService._posStoreId = "5";
+                                break;
+                            default:
+                                this.productsService._posStoreId = "1";
+                        }
+
                         this.counterDown();
                         this.isCounterDown = true;
                         this.notificationService.printSuccessMessage("login OK!");

@@ -62,7 +62,7 @@ export class HomeComponent extends Paginated implements OnInit {
 
     getProducts(): void {
         let self = this;
-        self.productsService.getProducts("1", self._page)
+        self.productsService.getProducts(this.productsService._posStoreId, self._page)
             .subscribe(res => {
                 var data: any = res.json();
                 self._products = [];

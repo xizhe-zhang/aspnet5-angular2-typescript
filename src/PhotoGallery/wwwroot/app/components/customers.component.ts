@@ -47,6 +47,15 @@ export class CustomersComponent extends Paginated implements OnInit {
                 console.log(feed);
                 this.connectionID = this.utilityService.getConnectionId();
                 if (feed.SessionKey === this.connectionID) {
+
+                    switch (feed.WechatName) {
+                        case "WEI2":
+                            this.productsService._posStoreId = "5";
+                            break;
+                        default:
+                            this.productsService._posStoreId = "1";
+                    }
+
                     this.getCustomer();
                 }
             }
@@ -55,7 +64,7 @@ export class CustomersComponent extends Paginated implements OnInit {
 
     getCustomer(): void {
         this.productsService.set(this._productAPI, 50);
-        this.productsService.getProducts("1", 0)
+        this.productsService.getProducts(this.productsService._posStoreId, 0)
             .subscribe(res => {
                 var data: any = res.json();
                 this._products = [];

@@ -41,6 +41,18 @@ export class CustomersComponent extends Paginated implements OnInit {
                 this.connectionID = this.utilityService.getConnectionId();
                 if (feed.SessionKey === this.connectionID) {
                     switch (this.productsService._pj) {
+                        case "doterra":
+                            this.productsService._posStoreId = "1";
+                            break;
+                        case "uniqlo":
+                            this.productsService._posStoreId = "2";
+                            break;
+                        case "familiar":
+                            this.productsService._posStoreId = "3";
+                            break;
+                        case "fwcake":
+                            this.productsService._posStoreId = "4";
+                            break;
                         case "towngas":
                             this.productsService._posStoreId = "5";
                             break;

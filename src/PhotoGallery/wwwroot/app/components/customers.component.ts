@@ -26,20 +26,13 @@ export class CustomersComponent extends Paginated implements OnInit {
     }
 
     ngOnInit() {
-        var storeId = "";
-        var token = "";
+        var pj = "";
         this.route
             .queryParams
             .subscribe(params => {
-                storeId = params['storeid'];
-                token = params['token'];
-                console.log(storeId, token); // you should get your parameters here
-                this.productsService._storeId = storeId;
-                this.productsService._token = token;
-                
-                // if(token===null||token===undefined||token===""){
-                //     this.notificationService.printConfirmationDialog("token isvalid!",null);
-                // }
+                pj = params['pj'];
+                console.log(pj); // you should get your parameters here
+                this.productsService._pj = pj
             });        
 
         this.feedService.addFeed.subscribe(
@@ -47,12 +40,8 @@ export class CustomersComponent extends Paginated implements OnInit {
                 console.log(feed);
                 this.connectionID = this.utilityService.getConnectionId();
                 if (feed.SessionKey === this.connectionID) {
-
-                    switch (feed.WechatName) {
-                        case "熙哲":
-                            this.productsService._posStoreId = "5";
-                            break;
-                        case "WEI2":
+                    switch (this.productsService._pj) {
+                        case "towngas":
                             this.productsService._posStoreId = "5";
                             break;
                         default:

@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
             width: 200,
             height: 200
         });
-        qrcode.makeCode('pos:' + this.connectionID);
+        qrcode.makeCode('pos:' + this.connectionID );
     }
 
     ngOnInit() {

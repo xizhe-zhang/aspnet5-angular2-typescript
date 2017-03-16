@@ -11,6 +11,8 @@ export class DataService {
     public _storeId: string;
     public _token: string;
 
+    public _pj: string;
+
     public _posStoreId: string;
 
     constructor(public http: Http) {

@@ -127,6 +127,10 @@ gulp.task('setup-vendors', function (done) {
         { base: 'node_modules/' })
         .pipe(gulp.dest(lib));
 
+    gulp.src('node_modules/' + "intl/**/*.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
+
 });
 
 gulp.task('compile-typescript', function (done) {

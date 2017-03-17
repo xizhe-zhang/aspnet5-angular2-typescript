@@ -127,6 +127,22 @@ gulp.task('setup-vendors', function (done) {
         { base: 'node_modules/' })
         .pipe(gulp.dest(lib));
 
+    gulp.src('node_modules/' + "es5-shim/es5-shim.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
+
+    gulp.src('node_modules/' + "mocha/mocha.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
+
+    gulp.src('node_modules/' + "chai/chai.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
+
+    gulp.src('node_modules/' + "es6-shim/es6-shim.js",
+        { base: 'node_modules/' })
+        .pipe(gulp.dest(lib));
+        
 });
 
 gulp.task('compile-typescript', function (done) {

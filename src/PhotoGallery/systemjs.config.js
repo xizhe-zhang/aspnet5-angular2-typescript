@@ -6,7 +6,7 @@
     System.config({
         paths: {
             // paths serve as alias
-            'npm:': 'lib/'
+            'npm:': 'http://amibucket1.oss-cn-shanghai.aliyuncs.com/p20/lib/'
         },
         // map tells the System loader where to look for things
         map: {

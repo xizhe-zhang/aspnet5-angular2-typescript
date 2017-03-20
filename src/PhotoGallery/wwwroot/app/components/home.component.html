@@ -83,7 +83,7 @@
             <div class="p-list" id="plist">
                 <div class="p-item" *ngFor="let s of sku.skus" (click)="addToCart(s)">
                     <a onclick="return false;" title={{s.SkuName}}>
-                        <img src="images/products/{{s.SkuCode}}.jpg" alt="">
+                        <img src="http://amibucket1.oss-cn-shanghai.aliyuncs.com/p20/images/products/{{s.SkuCode}}.jpg" alt="">
                         <span class="p-name">{{s.SkuName}}</span>
                         <span class="p-label">{{s.SkuPrice}}</span>
                     </a>
